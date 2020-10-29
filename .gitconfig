@@ -1,0 +1,48 @@
+[user]
+	email = hello@carloscar.com
+	signingkey = E05A95146D18CE4B
+	name = Carl Oscar Aaro
+
+[github]
+	user = kalaspuff
+
+[push]
+	default = simple
+
+[gpg]
+	program = gpg2
+
+[alias]
+	st = status
+	d = diff
+	a = add
+	ci = commit
+	co = checkout
+	cob = checkout -b
+	b = branch
+	br = branch
+	cb = branch --show-current
+	curr = cb
+	current = cb
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	l = lg
+	l1 = log --pretty=oneline --abbrev-commit --decorate
+	lp = log -p
+	who = shortlog -s --
+	tagnow = !git tag `date -u \"+%Y%m%d-%H%M%S\"`
+
+[commit]
+	gpgsign = true
+
+[pull]
+	rebase = false
+
+[merge]
+	tool = vimdiff
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
