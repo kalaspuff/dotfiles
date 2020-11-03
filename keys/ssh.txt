@@ -2,7 +2,7 @@
 # https://carloscar.keybase.pub/keys/ssh.txt
 # https://gist.github.com/kalaspuff/7b16d36c0255f1bd83604bef59f4fb65
 # -------------------------------------------------------------------------------------------------
-# Access to these keys to my user's '.ssh/authorized_keys' and I'll be happy, kthxbye~
+# Load these keys into my user's '.ssh/authorized_keys' and I'll be happy, kthxbye~
 # -------------------------------------------------------------------------------------------------
 
 # darkness - macbook pro 16" - added 2020-10-19

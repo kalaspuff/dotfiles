@@ -1,0 +1,65 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": false,
+    "editor.fontSize": 11,
+    "files.autoSave": "onFocusChange",
+    "files.trimTrailingWhitespace": true,
+    "editor.tokenColorCustomizations": {
+        "comments": "#72df9cea"
+    },
+    "workbench.colorTheme": "ƒ - Material",
+    "editor.wordWrap": "off",
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        {
+            "language": "html",
+            "autoFix": true
+        }
+    ],
+    "files.associations": {
+        "*.phtml": "html"
+    },
+    "editor.minimap.enabled": true,
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": true,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": true,
+        "suppressUpdateNotice": false,
+        "suppressWelcomeNotice": true
+    },
+    "window.zoomLevel": 1,
+    "python.pythonPath": "/usr/local/bin/python3",
+    "python.autoComplete.addBrackets": true,
+    "explorer.confirmDelete": false,
+    "editor.renderWhitespace": "boundary",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.editor.labelFormat": "short",
+    "gitlens.codeLens.scopes": [
+        "document",
+        // "containers"
+    ],
+    "python.sortImports.path": "/Users/kalaspuff/.local/bin/isort",
+    "python.linting.enabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.linting.flake8Enabled": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.linting.mypyPath": "/Users/kalaspuff/.local/bin/mypy",
+    "python.linting.flake8Path": "/Users/kalaspuff/.local/bin/flake8",
+    "python.languageServer": "Pylance",
+    "python.analysis.completeFunctionParens": true,
+    "editor.cursorWidth": 2,
+    "editor.cursorBlinking": "solid",
+    "python.venvPath": "/Users/kalaspuff/Library/Caches/pypoetry/virtualenvs",
+    "python.formatting.blackPath": "/Users/kalaspuff/.local/bin/black",
+    "python.formatting.provider": "black"
+}

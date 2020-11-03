@@ -14,7 +14,6 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK39ZXtzjMERZkTWNndvo9aYtnJYYwWGzKIHN7kvGlv
 
 #### `whoami`
 ```bash
-
 ~ $ keybase whoami
 # carloscar
 ```
@@ -35,11 +34,19 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK39ZXtzjMERZkTWNndvo9aYtnJYYwWGzKIHN7kvGlv
 * **Keybase**: https://keybase.io/carloscar/pgp_keys.asc
 
 ```bash
-# alternative 0: curl + gpg import
-~ $ curl https://keybase.io/carloscar/pgp_keys.asc | gpg --import
-
-# alternative 1: keybase import
+# alternative 0: get and import public keys using 'keybase pgp pull'
 ~ $ keybase pgp pull carloscar
+
+# alternative 1: get and import public keys using 'curl + gpg --import'
+~ $ curl https://keybase.io/carloscar/pgp_keys.asc | gpg --import
+```
+
+```bash
+# alternative 0: encrypt using 'keybase pgp encrypt'
+~ $ keybase pgp encrypt --no-self -k 5a84dcee73c57ac16da6ac95e05a95146d18ce4b carloscar -i INFILE
+
+# alternative 1: encrypt using 'gpg --encrypt'
+~ $ gpg --encrypt --armor -r 5a84dcee73c57ac16da6ac95e05a95146d18ce4b < INFILE
 ```
 
 ```
@@ -106,4 +113,78 @@ pCG106hKLkIgv2ec2Oc2Er75fob+ijyTlTSRovLYnr9eSwrcX2+6s1gh+5TSo3ML
 p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 =xvBN
 -----END PGP PUBLIC KEY BLOCK-----
+```
+
+#### `brew install`
+
+```bash
+# install homebrew
+~ $ /bin/bash -c "$(curl -fsSL                                               \
+        https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+
+```bash
+# install brew formulae (from 'brew list --formula')
+~ $ brew install adns apr apr-util argon2 aspell autoconf bash               \
+        bash-completion bash-completion@2 bdw-gc brotli c-ares curl-openssl  \
+        docker docker-completion fontconfig freetds freetype gd gdbm         \
+        gettext git glib gmp gnupg gnutls guile icu4c jansson jemalloc jpeg  \
+        jq krb5 kubernetes-cli libassuan libev libevent libffi libgcrypt     \
+        libgpg-error libidn libidn2 libksba libmetalink libpcap libpng       \
+        libpq libsodium libssh2 libtasn1 libtiff libtool libunistring        \
+        libusb libyaml libzip lua make nettle nghttp2 node npth oniguruma    \
+        openldap openssl@1.1 p11-kit pcre pcre2 perl php pinentry            \
+        pip-completion pkg-config python@3.8 python@3.9 readline rtmpdump    \
+        ruby sqlite tcpdump tidy-html5 unbound unixodbc vim webp xz yarn     \
+        zstd
+```
+
+```bash
+# install brew formulae (from 'brew list --cask')
+~ $ brew cask install adobe-creative-cloud alfred docker dropbox             \
+        font-fira-code font-source-code-pro google-chrome keybase            \
+        ledger-live slack spotify tor-browser tunnelblick                    \
+        visual-studio-code
+```
+
+```bash
+# link defaults
+~ $ brew link --force --overwrite python@3.8
+```
+
+#### `pipx install`
+```bash
+# install pipx
+~ $ pip install pipx
+```
+
+```bash
+# install cli packages with pipx
+~ $ for package in \
+        awscli black flake8 isort mypy poetry pytest twine                   \
+    ; do pipx install $package; done
+```
+
+#### `vscode`
+```bash
+# install vscode extensions (from 'code --list-extensions')
+~ $ for extension in \
+        almenon.arepl batisteo.vscode-django dbaeumer.vscode-eslint          \
+        donjayamanne.python-extension-pack dsebastien.vscode-python-pack     \
+        eamodio.gitlens Equinusocio.vsc-community-material-theme             \
+        Equinusocio.vsc-material-theme equinusocio.vsc-material-theme-icons  \
+        flowtype.flow-for-vscode GraphQL.vscode-graphql                      \
+        jbw91.theme-material-dark-soda lextudio.restructuredtext             \
+        magicstack.MagicPython mgesbert.python-path                          \
+        ms-azuretools.vscode-docker ms-python.python                         \
+        ms-python.vscode-pylance PKief.material-icon-theme                   \
+        vangware.dark-plus-material VisualStudioExptTeam.vscodeintellicode   \
+        wholroyd.jinja zxh404.vscode-proto3                                  \
+    ; do code --install-extension $extension; done
+```
+
+```bash
+# link settings.json
+~ $ rm -f ~/Library/Application\ Support/Code/User/settings.json && \
+        ln -s ~/.vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 ```
