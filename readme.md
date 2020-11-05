@@ -5,6 +5,8 @@
 * `kalaspuff` on GitHub: https://github.com/kalaspuff
 
 #### `.ssh/authorized_keys`
+> “Hi! I'm setting up a user for you. Can you hand me your ssh public key?”
+
 * **Keybase**: https://carloscar.keybase.pub/keys/ssh.txt
 * **GitHub**: https://gist.github.com/kalaspuff/7b16d36c0255f1bd83604bef59f4fb65
 
@@ -13,16 +15,22 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK39ZXtzjMERZkTWNndvo9aYtnJYYwWGzKIHN7kvGlv
 ```
 
 #### `whoami`
-```bash
-~ $ keybase whoami
-# carloscar
-```
+> “Can you prove that you're actually Carl Oscar?”
 
+##### I'm on keybase [https://keybase.io/carloscar], you can look me up yourself
 ```bash
 ~ $ keybase id kalaspuff@github
 # ▶ INFO Identifying carloscar
 # ✔ public key fingerprint: 5A84 DCEE 73C5 7AC1 6DA6 AC95 E05A 9514 6D18 CE4B
 # ✔ "kalaspuff" on github: https://gist.github.com/9e0311085f13755f93f42889203cfec0
+# ✔ admin of DNS zone carloscar.com: found TXT entry
+#   keybase-site-verification=68LOSK2HPQzssJYS1QtmetpkuGzPRGeZyB0WmV-SY-s
+# ✔ admin of carloscar.com via HTTPS: https://carloscar.com/.well-known/keybase.txt
+```
+
+```bash
+~ $ keybase whoami
+# carloscar
 ```
 
 ```bash
@@ -31,6 +39,9 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK39ZXtzjMERZkTWNndvo9aYtnJYYwWGzKIHN7kvGlv
 ```
 
 #### `carloscar.pub`
+> “I need send you a password, a shared private key or other secrets. How do I encrypt it?”
+
+##### First – Import my public keys
 * **Keybase**: https://keybase.io/carloscar/pgp_keys.asc
 
 ```bash
@@ -41,12 +52,23 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK39ZXtzjMERZkTWNndvo9aYtnJYYwWGzKIHN7kvGlv
 ~ $ curl https://keybase.io/carloscar/pgp_keys.asc | gpg --import
 ```
 
+##### If you need to encrypt a file (for example a shared private key)
 ```bash
-# alternative 0: encrypt using 'keybase pgp encrypt'
+# alternative 0 - files: encrypt a file using 'keybase pgp encrypt'
 ~ $ keybase pgp encrypt --no-self -k 5a84dcee73c57ac16da6ac95e05a95146d18ce4b carloscar -i INFILE
 
-# alternative 1: encrypt using 'gpg --encrypt'
+# alternative 1 - files: encrypt a file using 'gpg --encrypt'
 ~ $ gpg --encrypt --armor -r 5a84dcee73c57ac16da6ac95e05a95146d18ce4b < INFILE
+```
+
+##### How to encrypt a simple message (for example a password)
+```bash
+# alternative 0 - message: encrypt a file using 'keybase pgp encrypt' - end message with [ctrl+d]
+~ $ keybase pgp encrypt --no-self -k 5a84dcee73c57ac16da6ac95e05a95146d18ce4b carloscar
+
+# alternative 1 - message: encrypt a file using 'gpg --encrypt' - end message with [ctrl+d]
+~ $ gpg --encrypt --armor -r 5a84dcee73c57ac16da6ac95e05a95146d18ce4b
+
 ```
 
 ```
@@ -117,6 +139,7 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 
 #### `brew install`
 
+##### Setup on a new computer
 ```bash
 # install homebrew
 ~ $ /bin/bash -c "$(curl -fsSL                                               \
@@ -153,6 +176,8 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 ```
 
 #### `pipx install`
+
+##### Setup on a new computer
 ```bash
 # install pipx
 ~ $ pip install pipx
@@ -166,6 +191,8 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 ```
 
 #### `vscode`
+
+##### Setup on a new computer
 ```bash
 # install vscode extensions (from 'code --list-extensions')
 ~ $ for extension in \
