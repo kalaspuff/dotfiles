@@ -63,14 +63,40 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK39ZXtzjMERZkTWNndvo9aYtnJYYwWGzKIHN7kvGlv
 
 ##### How to encrypt a simple message (for example a password)
 ```bash
-# alternative 0 - message: encrypt a file using 'keybase pgp encrypt' - end message with [ctrl+d]
+# alternative 0 - message: encrypt using 'keybase pgp encrypt' - end message with [ctrl+d]
 ~ $ keybase pgp encrypt --no-self -k 5a84dcee73c57ac16da6ac95e05a95146d18ce4b carloscar
 
-# alternative 1 - message: encrypt a file using 'gpg --encrypt' - end message with [ctrl+d]
+# alternative 1 - message: encrypt using 'gpg --encrypt' - end message with [ctrl+d]
 ~ $ gpg --encrypt --armor -r 5a84dcee73c57ac16da6ac95e05a95146d18ce4b
-
 ```
 
+##### You can also verify that my key is indeed imported and works
+> Hi! 👋 I (Carl Oscar) signed this message using key "5a84dcee73c57ac16da6ac95e05a95146d18ce4b".
+
+Just head to https://keybase.io/verify or use `gpg`. 🙏
+```
+-----BEGIN PGP MESSAGE-----
+
+owEBsAJP/ZANAwEIAeBalRRtGM5LActpdABfqoCtSGkhIPCfkYsgSSAoQ2FybCBP
+c2Nhcikgc2lnbmVkIHRoaXMgbWVzc2FnZSB1c2luZyBrZXkgIjVhODRkY2VlNzNj
+NTdhYzE2ZGE2YWM5NWUwNWE5NTE0NmQxOGNlNGIiLg0KiQIzBAEBCAAdFiEEWoTc
+7nPFesFtpqyV4FqVFG0YzksFAl+qgMYACgkQ4FqVFG0YzkvNARAAmgzpiarx2+hi
++yWZ4vgslTKfQRB0d9VlMDiFOpxosMHRJgE1BOcuBxnE4ZykTH2pBkKrSmRgIm8s
+lSWURr8vo6DxItwv4iIRCSzB6QZUADFa5n4pn8hVs6smxvzGm/AkkqtJSbagUfLa
+R1KyKKxX//FWlBWqCjg8BM012vEkn2B8m53VlAESuNbPamNvN6n+/I7fHaBMCVmu
+uJywxRFlos/m1Ci8FjbSwKpPbalvsY9RwLzN8IjSBlw54Q1dN/PRqNZWdg8BG44d
+31WjhDF2uJi0ecWtyAtMbidwXwkXKxM7DgrYbPRbO6B2zM3cfQtXjrP1SwZ6UHbD
+RMII7kAr48/IaSS6Q0TTTCS1ey15u0bRK4ZoFCG/1xCVhiQAhmULHrmU9r0XfBHT
+lNK4C7zyE1snyry+V+SYZwn4MU5NwyTfpNqK+3QU5D9/YPl8I42HAD+IIHdF20ZY
+nmysc5BemvQ4KdDiExLokYWRbuHUucQ3hCkn7KD+nTZuq48Xr/QX97Ud1ieg2kVP
+llG9aVTRYrg7b3vK8yozalv7U0Z1+KFBdsQxzWdcLFmJUzpmpJ+Vlz0pPyJcDDzK
+hYlw0DKZn20W6kiU44VV7Blw79/GEIiwu+FobloJluyBs5D0MpLjK5OLM7zfqowV
+CQmgGIXo0iPExDOU4n8T1NUhsnwGm9k=
+=J/9D
+-----END PGP MESSAGE-----
+```
+
+##### And lastly, here's my public key if you'd rather get it here
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
