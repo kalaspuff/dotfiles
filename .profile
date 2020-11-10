@@ -241,6 +241,9 @@ alias c='cd'
 # 'ls' => 'ls -la'
 alias ls='ls -la'
 
+# list available wifi access points
+alias wifi='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan'
+
 # over the years, i learned that I'm apparently bad at typing 'make'
 alias mkae='make'
 alias maek='make'
@@ -278,6 +281,7 @@ alias doker='docker'
 alias docer='docker'
 alias dokcker='docker'
 alias docke='docker'
+alias docekr='docker'
 
 # over the years, i learned that I'm somewhat bad at typing 'git'
 alias igt='git'
