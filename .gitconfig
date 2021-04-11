@@ -19,17 +19,16 @@
 	ci = commit
 	co = checkout
 	cob = checkout -b
-	cp = cherry-pick
 	b = branch
 	br = branch
 	cb = branch --show-current
 	curr = cb
 	current = cb
-	lg = log --graph --pretty=format:'%C(cyan)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	l = lg
 	l1 = log --pretty=oneline --abbrev-commit --decorate
 	lp = log -p
-	who = shortlog -s -n --
+	who = shortlog -s --
 	tagnow = !git tag `date -u \"+%Y%m%d-%H%M%S\"`
 
 [commit]
@@ -46,3 +45,14 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[gitflow "branch"]
+	master = releases
+	develop = master
+
+[gitflow "prefix"]
+	feature = feature/
+	release = release/
+	hotfix = hotfix/
+	support = support/
+	versiontag =

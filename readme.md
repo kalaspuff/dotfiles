@@ -174,18 +174,29 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 
 ```bash
 # install brew formulae (from 'brew list --formula')
-~ $ brew install adns apr apr-util argon2 aspell autoconf bash               \
-        bash-completion bash-completion@2 bdw-gc brotli c-ares curl-openssl  \
-        docker docker-completion fontconfig freetds freetype gd gdbm         \
-        gettext git glib gmp gnupg gnutls guile icu4c jansson jemalloc jpeg  \
-        jq krb5 kubernetes-cli libassuan libev libevent libffi libgcrypt     \
-        libgpg-error libidn libidn2 libksba libmetalink libpcap libpng       \
-        libpq libsodium libssh2 libtasn1 libtiff libtool libunistring        \
-        libusb libyaml libzip lua make nettle nghttp2 node npth oniguruma    \
-        openldap openssl@1.1 p11-kit pcre pcre2 perl php pinentry            \
-        pip-completion pkg-config python@3.8 python@3.9 readline rtmpdump    \
-        ruby sqlite tcpdump tidy-html5 unbound unixodbc vim webp xz yarn     \
-        zstd
+~ $ brew tap aws/tap
+~ $ brew install adns aom apr apr-util argon2 aspell autoconf aws-sam-cli    \
+        bash bash-completion bash-completion@2 bdw-gc berkeley-db boost      \
+        brotli c-ares cairo cloc curl curl-openssl dav1d docbook docbook-xsl \
+        docker docker-completion ffmpeg flac fmt fontconfig freetds freetype \
+        frei0r fribidi gd gdbm gettext ghostscript giflib git git-flow glib  \
+        gmp gnu-getopt gnu-sed gnupg gnutls gobject-introspection graphite2  \
+        guile harfbuzz helm icu4c ilmbase imagemagick jansson jemalloc jpeg  \
+        jq krb5 kubernetes-cli lame leptonica libass libassuan libbluray     \
+        libde265 libebml libev libevent libffi libgcrypt libgpg-error        \
+        libheif libidn libidn2 libksba liblqr libmagic libmatroska           \
+        libmetalink libogg libomp libpcap libpng libpq libpthread-stubs      \
+        libsamplerate libsndfile libsodium libsoxr libssh2 libtasn1 libtiff  \
+        libtool libunistring libusb libuv libvidstab libvorbis libvpx libx11 \
+        libxau libxcb libxdmcp libxext libxrender libyaml libzip little-cms2 \
+        lua lzo m4 make mkvtoolnix mpdecimal ncurses nettle nghttp2 node     \
+        node@10 node@14 npth oniguruma opencore-amr openexr openjpeg         \
+        openldap openssl@1.1 opus p11-kit pcre pcre2 perl php pinentry       \
+        pip-completion pixman pkg-config pugixml python@3.8 python@3.9 rav1e \
+        readline rtmpdump rubberband ruby sdl2 shared-mime-info snappy speex \
+        sqlite srt tcl-tk tcpdump terraform terraform@0.12 tesseract theora  \
+        tidy-html5 unbound unixodbc vim webp x264 x265 xmlto xorgproto xvid  \
+        xz zeromq zimg zstd
 ```
 
 ```bash
@@ -193,12 +204,16 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 ~ $ brew cask install adobe-creative-cloud alfred docker dropbox             \
         font-fira-code font-source-code-pro google-chrome keybase            \
         ledger-live slack spotify tor-browser tunnelblick                    \
-        visual-studio-code
+        visual-studio-code cleanmymac ngrok plex transmission vlc
 ```
 
 ```bash
 # link defaults
-~ $ brew link --force --overwrite python@3.8
+~ $ brew link --force --overwrite python@3.9
+~ $ brew link --force --overwrite node@14
+~ $ CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib ;       \
+        /usr/local/bin/python3 -m pip install --upgrade setuptools wheel pip
+~ $ /usr/local/bin/node install -g yarn
 ```
 
 #### `pipx install`
@@ -206,14 +221,29 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 ##### Setup on a new computer
 ```bash
 # install pipx
-~ $ pip install pipx
+~ $ CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib ;       \
+        /usr/local/bin/python3 -m pip install --upgrade virtualenv pipx
 ```
 
 ```bash
 # install cli packages with pipx
-~ $ for package in \
-        awscli black flake8 isort mypy poetry pytest twine                   \
-    ; do pipx install $package; done
+~ $ CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib ;       \
+    brew uninstall --ignore-dependencies c-ares ;                            \
+    for package in                                                           \
+        awscli black flake8 isort mypy poetry py-spy pytest twine            \
+        tomodachi[protobuf,uvloop,aiodns,brotli]                             \
+    ; do /usr/local/bin/python3 -m pipx install $package; done ;             \
+    brew install c-ares
+```
+
+```bash
+# install cli packages with pipx (from private pypi repository)
+~ $ PYPIREPO=https://pypi.example.org/simple/ ;                              \
+    PACKAGES="4711 4711 4711" ;                                              \
+    CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib ;       \
+    for package in                                                           \
+        $PACKAGES                                                            \
+    ; do /usr/local/bin/python3 -m pipx install -i $PYPIREPO $package; done
 ```
 
 #### `vscode`
@@ -230,9 +260,10 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
         jbw91.theme-material-dark-soda lextudio.restructuredtext             \
         magicstack.MagicPython mgesbert.python-path                          \
         ms-azuretools.vscode-docker ms-python.python                         \
-        ms-python.vscode-pylance PKief.material-icon-theme                   \
-        vangware.dark-plus-material VisualStudioExptTeam.vscodeintellicode   \
-        wholroyd.jinja zxh404.vscode-proto3                                  \
+        ms-python.vscode-pylance ms-toolsai.jupyter                          \
+        PKief.material-icon-theme vangware.dark-plus-material                \
+        VisualStudioExptTeam.vscodeintellicode wholroyd.jinja                \
+        zxh404.vscode-proto3                                                 \
     ; do code --install-extension $extension; done
 ```
 

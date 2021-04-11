@@ -10,14 +10,6 @@
     },
     "workbench.colorTheme": "ƒ - Material",
     "editor.wordWrap": "off",
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        {
-            "language": "html",
-            "autoFix": true
-        }
-    ],
     "files.associations": {
         "*.phtml": "html"
     },
@@ -29,11 +21,7 @@
         "suppressGitVersionWarning": false,
         "suppressLineUncommittedWarning": true,
         "suppressNoRepositoryWarning": false,
-        "suppressResultsExplorerNotice": true,
-        "suppressUpdateNotice": false,
-        "suppressWelcomeNotice": true
     },
-    "window.zoomLevel": 1,
     "python.pythonPath": "/usr/local/bin/python3",
     "python.autoComplete.addBrackets": true,
     "explorer.confirmDelete": false,
@@ -61,5 +49,21 @@
     "editor.cursorBlinking": "solid",
     "python.venvPath": "/Users/kalaspuff/Library/Caches/pypoetry/virtualenvs",
     "python.formatting.blackPath": "/Users/kalaspuff/.local/bin/black",
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "docker.commands.build": null,
+    "window.newWindowDimensions": "offset",
+    "python.analysis.typeCheckingMode": "basic",
+    "window.zoomLevel": 1,
+    "[python]": {
+        "gitlens.codeLens.symbolScopes": [
+            "!Module"
+        ],
+        "editor.wordBasedSuggestions": false
+    },
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ]
 }

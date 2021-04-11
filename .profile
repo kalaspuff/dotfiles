@@ -17,8 +17,10 @@ function _print_shell_notice_start() {
 function _print_shell_notice_success() {
     if [ $# -eq 0 ]; then
         echo -e "\e[1;32msuccess\e[00m"
+    elif [ $# -eq 1 ]; then
+        echo -e "\e[1;32m$1\e[00m"
     else
-        echo -e "\e[1;32msuccess\e[00m \e[0;32m(\e[1;32m$1\e[0;32m)\e[00m"
+        echo -e "\e[1;32m$1\e[00m \e[0;32m(\e[1;32m$2\e[0;32m)\e[00m"
     fi
 }
 
@@ -31,7 +33,11 @@ function _print_shell_notice_info() {
 }
 
 function _print_shell_notice_failure() {
-    echo -e "\e[1;41mfailure\e[00m"
+    if [ $# -eq 0 ]; then
+        echo -e "\e[1;41mfailure\e[00m"
+    else
+        echo -e "\e[1;32m$1\e[00m"
+    fi
 }
 
 function _print_shell_notice_error() {
@@ -107,13 +113,13 @@ function _aquire_ssh_agent_lock() {
         return
     fi
 
-    _print_shell_notice_start "awaiting ssh agent lock"
-
+    jitter_sleep 0 0.3
     if [ -e "$ssh_env_lock" ]; then
-        lock_time=$(/bin/cat $ssh_env_lock 2> /dev/null | /usr/bin/sed 's/:.*//')
+        lock_time=$(cat $ssh_env_lock 2> /dev/null | sed 's/:.*//')
         if ! ([[ "$lock_time" ]] && [ $(($start_time - 60)) -ge $lock_time ]); then
+            _print_shell_notice_start "awaiting ssh agent lock"
             _print_shell_notice_info "waiting for others" "retry in 1-3 seconds"
-            jitter_sleep 1 3
+            jitter_sleep 0.5 2
             if ! _is_ssh_agent_running; then
                 _aquire_ssh_agent_lock
             fi
@@ -122,12 +128,9 @@ function _aquire_ssh_agent_lock() {
     fi
 
     echo -n "$start_time:$$" > "$ssh_env_lock"
-    _print_shell_notice_info "aquiring lock"
-    jitter_sleep 1 3
+    jitter_sleep 0.5 2
     lock_pid=$(cat $ssh_env_lock 2> /dev/null | sed 's/.*://')
     if _is_ssh_agent_running || ! [[ "$lock_pid" ]] || ! [ "$lock_pid" -eq "$$" ]; then
-        _print_shell_notice_start "awaiting ssh agent lock"
-        _print_shell_notice_info "waiting for others" "retry in 1-3 seconds"
         jitter_sleep 1 3
         if ! _is_ssh_agent_running; then
             _aquire_ssh_agent_lock
@@ -138,25 +141,34 @@ function _aquire_ssh_agent_lock() {
 
 function _release_ssh_agent_lock() {
     local ssh_env_lock="${SSH_ENV:=$HOME/.ssh/env}.lock"
-    rm -f "$ssh_env_lock" 2> /dev/null > /dev/null
+    local lock_pid=$(cat $ssh_env_lock 2> /dev/null | sed 's/.*://')
+    if [[ "$lock_pid" ]] && [ "$lock_pid" -eq "$$" ]; then
+        rm -f "$ssh_env_lock" 2> /dev/null > /dev/null
+    fi
 }
 
 function start-ssh-agent() {
+    local lock_aquired=
+
     if ! _is_ssh_agent_running; then
         _aquire_ssh_agent_lock
+        lock_aquired=1
+    fi
+
+    if _is_ssh_agent_running; then
+        _print_shell_notice_start "using existing ssh agent"
+        _export_ssh_agent_data
+        _print_shell_notice_success "success" "pid: $SSH_AGENT_PID"
+        if [[ "$lock_aquired" ]]; then
+            _release_ssh_agent_lock
+        fi
+        return
     fi
 
     _print_shell_notice_start "initializing new ssh agent"
 
-    if _is_ssh_agent_running; then
-        _export_ssh_agent_data
-        _print_shell_notice_success "pid: $SSH_AGENT_PID"
-        _release_ssh_agent_lock
-        return
-    fi
-
     if [ ! -e "${SSH_ENV}" ]; then
-        /usr/bin/touch "${SSH_ENV}"
+        touch "${SSH_ENV}"
         /bin/chmod 600 "${SSH_ENV}"
     fi
 
@@ -168,15 +180,15 @@ function start-ssh-agent() {
         error_exit_code=0
         if _is_ssh_agent_running; then
             _export_ssh_agent_data
-            _print_shell_notice_success "pid: $SSH_AGENT_PID"
+            _print_shell_notice_success "success" "pid: $SSH_AGENT_PID"
         else
-            _print_shell_notice_failure
+            _print_shell_notice_failure "failure"
             _print_shell_notice_error "cmd '/usr/bin/ssh-agent' exited prematurely"
             _print_shell_notice_cmd_output "$cmd_output" $error_exit_code
         fi
     else
         error_exit_code=$?
-        _print_shell_notice_failure
+        _print_shell_notice_failure "failure"
         _print_shell_notice_error "cmd '/usr/bin/ssh-agent' invalid exit <code: $error_exit_code>"
         _print_shell_notice_cmd_output "$cmd_output" $error_exit_code
     fi
@@ -187,7 +199,7 @@ function start-ssh-agent() {
 if _is_ssh_agent_running; then
     _export_ssh_agent_data
 else
-    start_ssh_agent && _export_ssh_agent_data
+    start-ssh-agent && _export_ssh_agent_data
 fi
 
 # bash completion
@@ -241,9 +253,6 @@ alias c='cd'
 # 'ls' => 'ls -la'
 alias ls='ls -la'
 
-# list available wifi access points
-alias wifi='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan'
-
 # over the years, i learned that I'm apparently bad at typing 'make'
 alias mkae='make'
 alias maek='make'
@@ -288,6 +297,8 @@ alias igt='git'
 alias gti='git'
 alias ig='git'
 alias tig='git'
+alias itg='git'
+alias gt='git'
 
 # over the years, i learned that I'm really bad at typing 'kubectl'
 alias kubbectl='kubectl'
@@ -319,3 +330,66 @@ alias vangrat='vagrant'
 alias vagntr='vagrant'
 alias varngt='vagrant'
 alias vargtn='vagrant'
+
+# try spelling tomodachi 9001 times in a row
+alias tomoidachi='tomodachi'
+alias tomdacihj='tomodachi'
+alias tomdacih='tomodachi'
+alias tomdaochi='tomodachi'
+alias tomdoiahci='tomodachi'
+alias tomdaicnh='tomodachi'
+alias tomdiahc='tomodachi'
+alias tomidahci='tomodachi'
+alias tomdaciht='tomodachi'
+alias tomodafhi='tomodachi'
+alias tomidachu='tomodachi'
+alias tomodacih='tomodachi'
+alias tomihdiac='tomodachi'
+alias tomdaihci='tomodachi'
+alias tomdacihi='tomodachi'
+alias todmacih='tomodachi'
+alias tomdaich='tomodachi'
+alias tomdaih='tomodachi'
+alias tomdoachi='tomodachi'
+alias tlmdaich='tomodachi'
+alias tomacih='tomodachi'
+alias tomdacihit='tomodachi'
+alias tomdach='tomodachi'
+alias tomdiachi='tomodachi'
+alias todmaoch='tomodachi'
+alias tomdacuh='tomodachi'
+alias tomdhacui='tomodachi'
+alias tomdaichi='tomodachi'
+alias tomidhac='tomodachi'
+
+# macOS screensaver gets stuck some times, just another way so that I can get out of that state without rebooting
+alias stop-screensaver='killall ScreenSaverEngine'
+alias screensaver-stop='killall ScreenSaverEngine'
+alias exit-screensaver='killall ScreenSaverEngine'
+alias screensaver-exit='killall ScreenSaverEngine'
+alias quit-screensaver='killall ScreenSaverEngine'
+alias screensaver-quit='killall ScreenSaverEngine'
+
+# other things I otherwise forget about
+alias wifiscan='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan'
+alias terraform-0.12='/usr/local/opt/terraform\@0.12/bin/terraform'
+alias recommended-ami-eks-17='aws ssm get-parameter --profile awsprofile-xxx --name /aws/service/eks/optimized-ami/1.17/amazon-linux-2/recommended/image_id --region eu-west-1 --query "Parameter.Value" --output text'
+alias recommended-ami-eks-18='aws ssm get-parameter --profile awsprofile-xxx --name /aws/service/eks/optimized-ami/1.18/amazon-linux-2/recommended/image_id --region eu-west-1 --query "Parameter.Value" --output text'
+alias recommended-ami-eks-19='aws ssm get-parameter --profile awsprofile-xxx --name /aws/service/eks/optimized-ami/1.19/amazon-linux-2/recommended/image_id --region eu-west-1 --query "Parameter.Value" --output text'
+alias recommended-ami-eks-20='aws ssm get-parameter --profile awsprofile-xxx --name /aws/service/eks/optimized-ami/1.20/amazon-linux-2/recommended/image_id --region eu-west-1 --query "Parameter.Value" --output text'
+alias recommended-ami-eks-21='aws ssm get-parameter --profile awsprofile-xxx --name /aws/service/eks/optimized-ami/1.21/amazon-linux-2/recommended/image_id --region eu-west-1 --query "Parameter.Value" --output text'
+alias recommended-ami-eks-22='aws ssm get-parameter --profile awsprofile-xxx --name /aws/service/eks/optimized-ami/1.22/amazon-linux-2/recommended/image_id --region eu-west-1 --query "Parameter.Value" --output text'
+alias cloc-microservice='cloc --exclude-dir=.mypy_cache,__pycache__,proto_build,dist,.git,.venv,.pytest_cache.vscode,library,tests .'
+
+# v
+alias vtag='victoria tag'
+alias vh='victoria commit-hash'
+alias vd='victoria deploy'
+alias vtest='victoria test'
+alias vt='victoria test'
+alias vsh='victoria shell'
+alias vlp='victoria lp'
+alias vex='victoria remote-shell'
+alias vrsh='victoria remote-shell'
+alias vrs='victoria remote-shell'
+alias vssh='victoria remote-shell'

@@ -1,0 +1,9 @@
+export SSH_ENV="$HOME/.ssh/env"
+export PATH="$HOME/.local/bin:/usr/local/opt/python:/usr/local/bin:/usr/local/opt/curl-openssl/bin:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/curl-openssl/lib/pkgconfig"
+export LDFLAGS="-L/usr/local/opt/curl-openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/curl-openssl/include"
+export CLICOLOR=1
+export LSCOLORS="exfxcxdxcxegedabagacad"
+export PROMPT='%B%F{green}%n@%m%f%b:%B%F{blue}%~%f%b$ '
+export USERID=$(id -u)
