@@ -8,6 +8,10 @@ export LSCOLORS="exfxcxdxcxegedabagacad"
 export PS1="\\[\\033[00m\\]\\[\\033[01;32m\\]\\u@\\H\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\\$ "
 export USERID=$(id -u)
 
+if [[ "$VIRTUAL_ENV" ]]; then
+    export PATH="$VIRTUAL_ENV/bin:$PATH"
+fi
+
 function _print_shell_notice_start() {
     echo -en "\e[0;37m[\e[1;37mnotice\e[0;37m]\e[00m "
     echo -en "\e[1;36m$1\e[00m"
@@ -230,7 +234,7 @@ function dsh() {
 }
 
 function docker-create-dev-network() {
-    [ "$$(docker network ls -f name=$DOCKER_DEV_NETWORK -q)" ] || docker network create --driver bridge $DOCKER_DEV_NETWORK
+    [ "$(docker network ls -f name=$DOCKER_DEV_NETWORK -q)" ] || docker network create --driver bridge $DOCKER_DEV_NETWORK
 }
 
 # misc pasteboard shenanigans
@@ -263,6 +267,13 @@ alias maker='make'
 alias mae='make'
 alias mak='make'
 alias meka='make'
+alias amke='make'
+alias makmekma='make'
+alias mka='make'
+alias emkae='make'
+alias aemk='make'
+alias mmake='make'
+alias mkaem='make'
 
 # over the years, i learned that I'm understandibly bad at typing 'ls'
 alias ls-la='ls'
@@ -320,17 +331,6 @@ alias kubb='kubectl'
 alias kbuelt='kubectl'
 alias kubelt='kubectl'
 
-# over the years, i learned that I'm whatgrnnant~~ bad at typing 'vagrant'
-alias vagrnat='vagrant'
-alias vargnat='vagrant'
-alias vagnrat='vagrant'
-alias vagrnt='vagrant'
-alias vagrnat='vagrant'
-alias vangrat='vagrant'
-alias vagntr='vagrant'
-alias varngt='vagrant'
-alias vargtn='vagrant'
-
 # try spelling tomodachi 9001 times in a row
 alias tomoidachi='tomodachi'
 alias tomdacihj='tomodachi'
@@ -372,6 +372,7 @@ alias screensaver-quit='killall ScreenSaverEngine'
 
 # other things I otherwise forget about
 alias wifiscan='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan'
+alias terraform-old='/usr/local/opt/terraform\@0.12/bin/terraform'
 alias terraform-0.12='/usr/local/opt/terraform\@0.12/bin/terraform'
 alias recommended-ami-eks-17='aws ssm get-parameter --profile awsprofile-xxx --name /aws/service/eks/optimized-ami/1.17/amazon-linux-2/recommended/image_id --region eu-west-1 --query "Parameter.Value" --output text'
 alias recommended-ami-eks-18='aws ssm get-parameter --profile awsprofile-xxx --name /aws/service/eks/optimized-ami/1.18/amazon-linux-2/recommended/image_id --region eu-west-1 --query "Parameter.Value" --output text'
