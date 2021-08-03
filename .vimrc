@@ -1,4 +1,5 @@
 source $VIMRUNTIME/defaults.vim
 
-set mouse=
-set ttymouse=
+set mouse -=a
+set shortmess=a
+set cmdheight=2
