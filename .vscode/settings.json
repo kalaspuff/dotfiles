@@ -35,7 +35,6 @@
     "python.sortImports.path": "/Users/kalaspuff/.local/bin/isort",
     "python.linting.enabled": true,
     "python.linting.mypyEnabled": true,
-    "python.linting.flake8Enabled": true,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
@@ -53,17 +52,23 @@
     "docker.commands.build": null,
     "window.newWindowDimensions": "offset",
     "python.analysis.typeCheckingMode": "basic",
-    "window.zoomLevel": 1,
     "[python]": {
         "gitlens.codeLens.symbolScopes": [
             "!Module"
         ],
         "editor.wordBasedSuggestions": false
     },
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ]
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "python.linting.flake8Enabled": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "python.defaultInterpreterPath": "/usr/local/bin/python3",
+    "snyk.yesWelcomeNotification": false,
+    "snyk.token": "",
+    "snyk.codeEnabled": false,
+    "window.zoomLevel": 1
 }
