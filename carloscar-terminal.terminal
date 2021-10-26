@@ -237,7 +237,7 @@
 	<key>ShowActiveProcessArgumentsInTitle</key>
 	<true/>
 	<key>ShowActiveProcessInTitle</key>
-	<true/>
+	<false/>
 	<key>ShowCommandKeyInTitle</key>
 	<false/>
 	<key>ShowDimensionsInTitle</key>
@@ -277,13 +277,15 @@
 	<key>VisualBellOnlyWhenMuted</key>
 	<false/>
 	<key>WindowTitle</key>
-	<string>$</string>
+	<string></string>
 	<key>name</key>
 	<string>carloscar-terminal</string>
 	<key>shellExitAction</key>
 	<integer>0</integer>
 	<key>type</key>
 	<string>Window Settings</string>
+	<key>useOptionAsMetaKey</key>
+	<false/>
 	<key>warnOnShellCloseAction</key>
 	<integer>1</integer>
 </dict>

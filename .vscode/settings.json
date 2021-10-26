@@ -70,5 +70,5 @@
     "snyk.yesWelcomeNotification": false,
     "snyk.token": "",
     "snyk.codeEnabled": false,
-    "window.zoomLevel": 1
+    "window.zoomLevel": 0
 }
