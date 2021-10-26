@@ -70,5 +70,8 @@
     "snyk.yesWelcomeNotification": false,
     "snyk.token": "",
     "snyk.codeEnabled": false,
-    "window.zoomLevel": 0
+    "snyk.features.codeQuality": false,
+    "snyk.features.codeSecurity": false,
+    "snyk.yesCrashReport": false,
+    "snyk.yesTelemetry": false
 }
