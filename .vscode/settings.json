@@ -1,14 +1,13 @@
 {
     "workbench.startupEditor": "newUntitledFile",
-    "editor.fontFamily": "Fira Code",
+    "editor.fontFamily": "Source Code Pro",
     "editor.fontLigatures": false,
-    "editor.fontSize": 11,
     "files.autoSave": "onFocusChange",
     "files.trimTrailingWhitespace": true,
     "editor.tokenColorCustomizations": {
         "comments": "#72df9cea"
     },
-    "workbench.colorTheme": "ƒ - Material",
+    "workbench.colorTheme": "GitHub Dark",
     "editor.wordWrap": "off",
     "files.associations": {
         "*.phtml": "html"
@@ -24,20 +23,18 @@
     },
     "python.pythonPath": "/usr/local/bin/python3",
     "python.autoComplete.addBrackets": true,
-    "explorer.confirmDelete": false,
     "editor.renderWhitespace": "boundary",
     "diffEditor.ignoreTrimWhitespace": false,
     "workbench.editor.labelFormat": "short",
     "gitlens.codeLens.scopes": [
-        "document",
-        // "containers"
+        "document"
     ],
-    "python.sortImports.path": "/Users/kalaspuff/.local/bin/isort",
+    "isort.path": [
+        "/Users/kalaspuff/.local/bin/isort"
+    ],
     "python.linting.enabled": true,
     "python.linting.mypyEnabled": true,
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
+    "editor.codeActionsOnSave": {},
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "python.linting.mypyPath": "/Users/kalaspuff/.local/bin/mypy",
@@ -49,7 +46,7 @@
     "python.venvPath": "/Users/kalaspuff/Library/Caches/pypoetry/virtualenvs",
     "python.formatting.blackPath": "/Users/kalaspuff/.local/bin/black",
     "python.formatting.provider": "black",
-    "docker.commands.build": null,
+    "docker.commands.build": [],
     "window.newWindowDimensions": "offset",
     "python.analysis.typeCheckingMode": "basic",
     "[python]": {
@@ -61,7 +58,6 @@
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
-    "python.linting.flake8Enabled": true,
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
@@ -73,5 +69,29 @@
     "snyk.features.codeQuality": false,
     "snyk.features.codeSecurity": false,
     "snyk.yesCrashReport": false,
-    "snyk.yesTelemetry": false
+    "snyk.yesTelemetry": false,
+    "snyk.features.openSourceSecurity": false,
+    "snyk.advanced.automaticDependencyManagement": false,
+    "editor.inlineSuggest.enabled": true,
+    "editor.fontSize": 11,
+    "editor.fontWeight": "600",
+    "terminal.integrated.fontSize": 11,
+    "terminal.integrated.fontWeightBold": "500",
+    "workbench.preferredDarkColorTheme": "GitHub Dark",
+    "workbench.tips.enabled": false,
+    "workbench.colorCustomizations": {},
+    "explorer.compactFolders": false,
+    "explorer.excludeGitIgnore": true,
+    "explorer.enableUndo": false,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": false,
+        "plaintext": true,
+        "markdown": false
+    },
+    "solidity.formatter": "forge",
+    "window.zoomLevel": 1,
+    "workbench.activityBar.visible": false,
+    "terminal.integrated.fontFamily": "SauceCodePro NFM,Source Code Pro,monospace",
+    "terminal.integrated.fontWeight": "normal",
 }

@@ -12,6 +12,87 @@ if [[ "$VIRTUAL_ENV" ]]; then
     export PATH="$VIRTUAL_ENV/bin:$PATH"
 fi
 
+
+__bash_prompt_local() {
+    local errorexit='`export XIT=$? \
+        && [ "$XIT" -ne "0" ] && echo -n "\[\033[0;1;91m\]≡\[\033[0m\] " || echo -n "\[\033[1;37m\]≡ \[\033[0m\]"`'
+    local userpart='`export XIT=$? \
+        && [ ! -z "${GITHUB_USER}" ] && echo -n "\[\033[1;92m\]\[\033[92;3m\]♥ \[\033[0;1;92;3m\]${GITHUB_USER}" || echo -n "\[\033[0;32;1m\]\u" \
+        && echo -n "\[\033[0;90m\]" \
+        && [ -z "$XIT" ] || [ "$XIT" -eq "0" ]`'
+    local gitbranch='`export XIT=$? \
+        && if [ "$(git config --get codespaces-theme.hide-status 2>/dev/null)" != 1 ]; then \
+            export BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null); \
+            if [ "${BRANCH}" != "" ]; then \
+                if git ls-files --error-unmatch -m --directory --no-empty-directory -o --exclude-standard ":/*" > /dev/null 2>&1; then \
+                    echo -n "\[\033[0;93m\]⌁ " \
+                    && non_staged_files=$(git ls-files --error-unmatch -m --directory --no-empty-directory -o --exclude-standard ":/*" | wc -l | xargs -n1) \
+                    && echo -n "\[\033[0;1;93m\]≒ \[\033[0;33m\]$non_staged_files \[\033[0;90m\]➔ "; \
+                else \
+                    echo -n "\[\033[0;90m\]⌁ " \
+                    && echo -n "\[\033[0;1;90m\]≒ \[\033[0;90m\]0 \[\033[0;90m\]➔ "; \
+                fi \
+                && echo -n "\[\033[1;90m\] ${BRANCH} " ; \
+            fi; \
+        fi \
+        && [ -z "$XIT" ] || [ "$XIT" -eq "0" ]`'
+	    local cwd='`export XIT=$? && export CWD=$(pwd | sed "s/.\{1,\}\/\([^\/]*\)/\1/") \
+        && if [ "$(git config --get codespaces-theme.hide-status 2>/dev/null)" != 1 ]; then \
+            if [ "${CWD}" != "" ]; then \
+                echo -n "\[\033[0;97m\]⌁ \[\033[0;1;34m\] \[\033[1;34m\]${CWD}"; \
+		[ "$(pwd)" = "${HOME}" ] && echo -n " (~)";
+            fi; \
+        fi \
+        && [ -z "$XIT" ] || [ "$XIT" -eq "0" ]`'
+
+    local removecolor='\[\033[0m\]'
+    PS1="${userpart} ${cwd} ${gitbranch}${errorexit}"
+    unset -f __bash_prompt_codespace
+    unset -f __bash_prompt_local
+}
+
+__bash_prompt_coespace() {
+    local errorexit='`export XIT=$? \
+        && [ "$XIT" -ne "0" ] && echo -n "\[\033[0;1;91m\]≡\[\033[0m\] " || echo -n "\[\033[1;37m\]≡ \[\033[0m\]"`'
+    local userpart='`export XIT=$? \
+        && [ ! -z "${GITHUB_USER}" ] && echo -n "\[\033[1;92m\]\[\033[92;3m\]♥ \[\033[0;1;92;3m\]${GITHUB_USER}" || echo -n "\[\033[0;92;1m\]\u@\h" \
+        && echo -n "\[\033[0;90m\]" \
+        && [ -z "$XIT" ] || [ "$XIT" -eq "0" ]`'
+    local gitbranch='`export XIT=$? \
+        && if [ "$(git config --get codespaces-theme.hide-status 2>/dev/null)" != 1 ]; then \
+            export BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null); \
+            if [ "${BRANCH}" != "" ]; then \
+                if git ls-files --error-unmatch -m --directory --no-empty-directory -o --exclude-standard ":/*" > /dev/null 2>&1; then \
+                    echo -n "\[\033[0;93;2m\]⌁ " \
+                    && non_staged_files=$(git ls-files --error-unmatch -m --directory --no-empty-directory -o --exclude-standard ":/*" | wc -l | xargs -n1) \
+                    && echo -n "\[\033[0;1;93m\]≒ \[\033[0;33m\]$non_staged_files \[\033[0;90;2m\]➔ "; \
+                else \
+                    echo -n "\[\033[0;90;2m\]⌁ " \
+                    && echo -n "\[\033[0;1;90m\]≒ \[\033[0;90m\]0 \[\033[0;90;2m\]➔ "; \
+                fi \
+                && echo -n "\[\033[0;90m\] ${BRANCH} "; \
+            fi; \
+        fi \
+        && [ -z "$XIT" ] || [ "$XIT" -eq "0" ]`'
+    local cwd='`export XIT=$? && export CWD=$(pwd | sed "s/.\{1,\}\/\([^\/]*\)/\1/") \
+        && if [ "$(git config --get codespaces-theme.hide-status 2>/dev/null)" != 1 ]; then \
+            if [ "${CWD}" != "" ]; then \
+                echo -n "\[\033[1;94;2m\]⌁ \[\033[0;1;94m\] \[\033[0;34m\]${CWD}"; \
+            fi; \
+        fi \
+        && [ -z "$XIT" ] || [ "$XIT" -eq "0" ]`'
+
+    local removecolor='\[\033[0m\]'
+    PS1="${userpart} ${cwd} ${gitbranch}${errorexit}"
+    unset -f __bash_prompt_codespace
+    unset -f __bash_prompt_local
+}
+
+# __bash_prompt_local
+__bash_prompt_codespace
+export PROMPT_DIRTRIM=4
+
+
 function _print_shell_notice_start() {
     echo -en "\e[0;37m[\e[1;37mnotice\e[0;37m]\e[00m "
     echo -en "\e[1;36m$1\e[00m"
@@ -254,8 +335,8 @@ alias julia='docker run -ti julia'
 # 'c' => 'cd'
 alias c='cd'
 
-# 'ls' => 'ls -la'
-alias ls='ls -la'
+# 'ls' => 'exa' or 'ls -la'
+which exa 2> /dev/null > /dev/null && alias ls='exa -l --group-directories-first' || alias ls='ls -la'
 
 # over the years, i learned that I'm apparently bad at typing 'make'
 alias mkae='make'
