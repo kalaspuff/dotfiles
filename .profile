@@ -181,6 +181,10 @@ function _export_ssh_agent_data() {
 
 function _is_ssh_agent_running()
 {
+    if [ ! -d "$dirname" ]; then
+        return 1
+    fi
+
     if [[ "${SSH_AGENT_PID}" ]] && /bin/ps -p ${SSH_AGENT_PID} -o uid,user,comm | /usr/bin/grep "^\s*$USERID\s\s*$USER\s\s*\(/usr/bin/ssh-agent\|ssh-agent\)\$" > /dev/null; then
         return 0
     fi
@@ -242,6 +246,11 @@ function _release_ssh_agent_lock() {
 }
 
 function start-ssh-agent() {
+    local dirname=$(dirname $SSH_ENV)
+    if [ ! -d "$dirname" ]; then
+        return
+    fi
+
     local lock_aquired=
 
     if ! _is_ssh_agent_running; then
