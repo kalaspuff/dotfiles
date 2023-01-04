@@ -20,11 +20,21 @@ if [ -n "$BASH_VERSION" ]; then
     if [ -f "$HOME/.bashrc" ] && [ -z "$_BASHRC_SOURCED" ]; then
         export _BASHRC_SOURCED=1
         . "$HOME/.bashrc"
+
+        [ -z "${GITHUB_USER}" ] && gh auth status 2> /dev/null > /dev/null && export GITHUB_USER="$(gh auth status 2>&1 | grep "Logged in to github\.com" | cut -d' ' -f9)"
+
         [ ! -z "${GITHUB_USER}" ] \
             && clear \
             && printf "\033[1;90mHi! 👋 Authenticated with GitHub as \033[0;1;97;4m@${GITHUB_USER}\033[0m\n\n"
+
+        if [ "$USER" = "vscode" ] && [ -z "${GITHUB_USER}" ] && git config --get github.user 2> /dev/null > /dev/null; then
+            export GITHUB_USER="$(git config --get github.user)"
+            clear \
+                && printf "\033[1;90mHi! 👋 Using GitHub username from .gitconfig (\033[0;1;97;4m@${GITHUB_USER}\033[0m)\n\n"
+        fi
     fi
 fi
+
 
 __bash_prompt_local() {
     local errorexit='`export XIT=$? \
@@ -68,7 +78,7 @@ __bash_prompt_codespace() {
     local errorexit='`export XIT=$? \
         && [ "$XIT" -ne "0" ] && echo -n "\[\033[0;1;91m\]≡\[\033[0m\] " || echo -n "\[\033[1;37m\]≡ \[\033[0m\]"`'
     local userpart='`export XIT=$? \
-        && [ ! -z "${GITHUB_USER}" ] && echo -n "\[\033[1;92m\]\[\033[92;3m\] \[\033[0;1;92;3m\]${GITHUB_USER}" || echo -n "\[\033[0;92;1m\]\u@\h" \
+        && [ ! -z "${GITHUB_USER}" ] && echo -n "\[\033[1;92m\]\[\033[92;3m\] \[\033[0;1;92;3m\]${GITHUB_USER}" || echo -n "\[\033[0;92;1m\]\u" \
         && echo -n "\[\033[0;90m\]" \
         && [ -z "$XIT" ] || [ "$XIT" -eq "0" ]`'
     local gitbranch='`export XIT=$? \
