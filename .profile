@@ -186,7 +186,7 @@ function _export_ssh_agent_data() {
 
 function _is_ssh_agent_running()
 {
-    if [ ! -d "$dirname" ]; then
+    if [ ! -d "$dirname" ] || [ "$USER" = "vscode" ]; then
         return 1
     fi
 
@@ -252,7 +252,7 @@ function _release_ssh_agent_lock() {
 
 function start-ssh-agent() {
     local dirname=$(dirname $SSH_ENV)
-    if [ ! -d "$dirname" ]; then
+    if [ ! -d "$dirname" ] || [ "$USER" = "vscode" ]; then
         return
     fi
 
