@@ -68,8 +68,9 @@ __bash_prompt_local() {
         fi \
         && [ -z "$XIT" ] || [ "$XIT" -eq "0" ]`'
 
+    local leftalign='`echo -n "\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D"`'
     local removecolor='\[\033[0m\]'
-    PS1="${userpart} ${cwd} ${gitbranch}${errorexit}"
+    PS1="${leftalign}${userpart} ${cwd} ${gitbranch}${errorexit}"
     unset -f __bash_prompt_codespace
     unset -f __bash_prompt_local
 }
@@ -105,8 +106,9 @@ __bash_prompt_codespace() {
         fi \
         && [ -z "$XIT" ] || [ "$XIT" -eq "0" ]`'
 
+    local leftalign='`echo -n "\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D\033[D"`'
     local removecolor='\[\033[0m\]'
-    PS1="${userpart} ${cwd} ${gitbranch}${errorexit}"
+    PS1="${leftalign}${userpart} ${cwd} ${gitbranch}${errorexit}"
 
     unset -f __bash_prompt_codespace
     unset -f __bash_prompt_local
