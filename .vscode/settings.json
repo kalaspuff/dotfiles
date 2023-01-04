@@ -94,4 +94,5 @@
     "workbench.activityBar.visible": false,
     "terminal.integrated.fontFamily": "SauceCodePro NFM,Source Code Pro,monospace",
     "terminal.integrated.fontWeight": "normal",
+    "terminal.integrated.shellIntegration.decorationsEnabled": "never"
 }
