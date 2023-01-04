@@ -1,6 +1,5 @@
 [user]
 	email = hello@carloscar.com
-	signingkey = E05A95146D18CE4B
 	name = Carl Oscar Aaro
 
 [github]
@@ -8,9 +7,6 @@
 
 [push]
 	default = simple
-
-[gpg]
-	program = gpg
 
 [alias]
 	st = status
@@ -30,9 +26,6 @@
 	lp = log -p
 	who = shortlog -s --
 	tagnow = !git tag `date -u \"+%Y%m%d-%H%M%S\"`
-
-[commit]
-	gpgsign = true
 
 [pull]
 	rebase = false
@@ -56,5 +49,17 @@
 	hotfix = hotfix/
 	support = support/
 	versiontag =
-[tag]
-	gpgSign = true
+
+## GitHub Codespaces requires these settings to be unset
+#
+# [user]
+# 	signingkey = E05A95146D18CE4B
+#
+# [gpg]
+# 	program = gpg
+#
+# [commit]
+# 	gpgsign = true
+#
+# [tag]
+# 	gpgSign = true
