@@ -1,8 +1,12 @@
+[ -f /usr/local/bin/brew ] && export BREW_PREFIX=/usr/local
+[ -f /opt/homebrew/bin/brew ] && export BREW_PREFIX=/opt/homebrew
+[ -z $BREW_PREFIX ] && export BREW_PREFIX=/opt/homebrew
+
 export SSH_ENV="$HOME/.ssh/env"
-export PATH="$HOME/.local/bin:/usr/local/bin:/usr/local/opt/curl-openssl/bin:$PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/curl-openssl/lib/pkgconfig"
-export LDFLAGS="-L/usr/local/opt/curl-openssl/lib"
-export CPPFLAGS="-I/usr/local/opt/curl-openssl/include"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/Library/Python/3.10/bin:/usr/local/bin:${BREW_PREFIX}/opt/python/bin:${BREW_PREFIX}/bin:${BREW_PREFIX}/opt/curl-openssl/bin:$HOME/.foundry/bin:$PATH"
+export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/curl-openssl/lib/pkgconfig"
+export LDFLAGS="-L${BREW_PREFIX}/opt/curl-openssl/lib"
+export CPPFLAGS="-I${BREW_PREFIX}/opt/curl-openssl/include"
 export CLICOLOR=1
 export LSCOLORS="exfxcxdxcxegedabagacad"
 export PS1="\\[\\033[00m\\]\\[\\033[01;32m\\]\\u@\\H\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\\$ "
@@ -12,6 +16,11 @@ if [[ "$VIRTUAL_ENV" ]]; then
     export PATH="$VIRTUAL_ENV/bin:$PATH"
 fi
 
+if [ -n "$BASH_VERSION" ]; then
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
+fi
 
 __bash_prompt_local() {
     local errorexit='`export XIT=$? \
@@ -51,7 +60,7 @@ __bash_prompt_local() {
     unset -f __bash_prompt_local
 }
 
-__bash_prompt_coespace() {
+__bash_prompt_codespace() {
     local errorexit='`export XIT=$? \
         && [ "$XIT" -ne "0" ] && echo -n "\[\033[0;1;91m\]≡\[\033[0m\] " || echo -n "\[\033[1;37m\]≡ \[\033[0m\]"`'
     local userpart='`export XIT=$? \
@@ -318,6 +327,28 @@ function docker-create-dev-network() {
     [ "$(docker network ls -f name=$DOCKER_DEV_NETWORK -q)" ] || docker network create --driver bridge $DOCKER_DEV_NETWORK
 }
 
+function ens() {
+    local is_reverse=
+    if [[ "$1" = "-"* ]]; then
+        if [[ "$1" = "-r" ]] || [[ "$1" = "--reverse" ]]; then
+            is_reverse=1
+        shift
+        else
+        echo "Invalid option: $1"
+            return 1
+        fi
+    fi
+    if [ -z $is_reverse ]; then
+        local domain=$1
+        if [[ "$domain" != *"."* ]]; then domain="$domain".eth; fi
+        cast rn --rpc-url https://rpc.ankr.com/eth $domain
+    else
+        local addr=$1
+        cast l --rpc-url https://rpc.ankr.com/eth $addr
+    fi
+}
+
+
 # misc pasteboard shenanigans
 alias pbjq='pbpaste | jq'
 alias phpunserialize='php -r "echo json_encode(unserialize(stream_get_contents(STDIN)));" | jq'
@@ -442,6 +473,20 @@ alias tomdacuh='tomodachi'
 alias tomdhacui='tomodachi'
 alias tomdaichi='tomodachi'
 alias tomidhac='tomodachi'
+
+# cast isn't that hard
+alias csat='cast'
+alias c='cast'
+alias ast='cast'
+alias castt='cast'
+
+# forge is a froge
+alias froger='forge'
+alias forge='forge'
+alias froge='forge'
+alias fogre='forge'
+alias foreg='forge'
+alias froeg='forge'
 
 # macOS screensaver gets stuck some times, just another way so that I can get out of that state without rebooting
 alias stop-screensaver='killall ScreenSaverEngine'
