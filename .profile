@@ -93,6 +93,9 @@ __bash_prompt_codespace() {
 
     local removecolor='\[\033[0m\]'
     PS1="${userpart} ${cwd} ${gitbranch}${errorexit}"
+
+    [ ! -z "${GITHUB_USER}" ] && printf "\033[1;90m👋 Authenticated with GitHub as \033[0;1;97;4m@${GITHUB_USER}\033[0m\n\n"
+
     unset -f __bash_prompt_codespace
     unset -f __bash_prompt_local
 }
