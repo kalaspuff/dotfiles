@@ -16,11 +16,11 @@ if [[ "$VIRTUAL_ENV" ]]; then
     export PATH="$VIRTUAL_ENV/bin:$PATH"
 fi
 
-if [ -n "$BASH_VERSION" ]; then
-    if [ -f "$HOME/.bashrc" ]; then
-        . "$HOME/.bashrc"
-    fi
-fi
+# if [ -n "$BASH_VERSION" ]; then
+#     if [ -f "$HOME/.bashrc" ]; then
+#         . "$HOME/.bashrc"
+#     fi
+# fi
 
 __bash_prompt_local() {
     local errorexit='`export XIT=$? \
