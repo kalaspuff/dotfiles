@@ -53,7 +53,8 @@
         "gitlens.codeLens.symbolScopes": [
             "!Module"
         ],
-        "editor.wordBasedSuggestions": false
+        "editor.wordBasedSuggestions": false,
+        "editor.formatOnType": true
     },
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
@@ -80,19 +81,20 @@
     "workbench.preferredDarkColorTheme": "GitHub Dark",
     "workbench.tips.enabled": false,
     "workbench.colorCustomizations": {},
-    "explorer.compactFolders": false,
     "explorer.excludeGitIgnore": true,
     "explorer.enableUndo": false,
     "github.copilot.enable": {
         "*": true,
         "yaml": false,
         "plaintext": true,
-        "markdown": false
+        "markdown": true
     },
     "solidity.formatter": "forge",
-    "window.zoomLevel": 1,
-    "workbench.activityBar.visible": false,
     "terminal.integrated.fontFamily": "SauceCodePro NFM,Source Code Pro,monospace",
     "terminal.integrated.fontWeight": "normal",
-    "terminal.integrated.shellIntegration.decorationsEnabled": "never"
+    "terminal.integrated.shellIntegration.decorationsEnabled": "never",
+    "explorer.compactFolders": false,
+    "workbench.activityBar.visible": false,
+    "workbench.iconTheme": "file-icons",
+    "dotfiles.repository": "kalaspuff/dotfiles"
 }
