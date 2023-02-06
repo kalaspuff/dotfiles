@@ -1,10 +1,12 @@
 # `kalaspuff/dotfiles`
+
 *Just another collection of dotfiles – this time, my dotfiles.*
 
 * `carloscar` on Keybase: https://keybase.io/carloscar
 * `kalaspuff` on GitHub: https://github.com/kalaspuff
 
 #### `.ssh/authorized_keys`
+
 > “Hi! I'm setting up a user for you. Can you hand me your ssh public key?”
 
 * **Keybase**: https://carloscar.keybase.pub/keys/ssh.txt
@@ -15,9 +17,11 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK39ZXtzjMERZkTWNndvo9aYtnJYYwWGzKIHN7kvGlv
 ```
 
 #### `whoami`
+
 > “Can you prove that you're actually Carl Oscar?”
 
 ##### I'm on keybase [https://keybase.io/carloscar], you can look me up yourself
+
 ```bash
 ~ $ keybase id kalaspuff@github
 # ▶ INFO Identifying carloscar
@@ -39,9 +43,11 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK39ZXtzjMERZkTWNndvo9aYtnJYYwWGzKIHN7kvGlv
 ```
 
 #### `carloscar.pub`
+
 > “I need send you a password, a shared private key or other secrets. How do I encrypt it?”
 
 ##### First – Import my public keys
+
 * **Keybase**: https://keybase.io/carloscar/pgp_keys.asc
 
 ```bash
@@ -53,6 +59,7 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK39ZXtzjMERZkTWNndvo9aYtnJYYwWGzKIHN7kvGlv
 ```
 
 ##### If you need to encrypt a file (for example a shared private key)
+
 ```bash
 # alternative 0 - files: encrypt a file using 'keybase pgp encrypt'
 ~ $ keybase pgp encrypt --no-self -k 5a84dcee73c57ac16da6ac95e05a95146d18ce4b carloscar -i INFILE
@@ -62,6 +69,7 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK39ZXtzjMERZkTWNndvo9aYtnJYYwWGzKIHN7kvGlv
 ```
 
 ##### How to encrypt a simple message (for example a password)
+
 ```bash
 # alternative 0 - message: encrypt using 'keybase pgp encrypt' - end message with [ctrl+d]
 ~ $ keybase pgp encrypt --no-self -k 5a84dcee73c57ac16da6ac95e05a95146d18ce4b carloscar
@@ -71,9 +79,11 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK39ZXtzjMERZkTWNndvo9aYtnJYYwWGzKIHN7kvGlv
 ```
 
 ##### You can also verify that my key is indeed imported and works
+
 > Hi! 👋 I (Carl Oscar) signed this message using key "5a84dcee73c57ac16da6ac95e05a95146d18ce4b".
 
 Just head to https://keybase.io/verify or use `gpg`. 🙏
+
 ```
 -----BEGIN PGP MESSAGE-----
 
@@ -97,6 +107,7 @@ CQmgGIXo0iPExDOU4n8T1NUhsnwGm9k=
 ```
 
 ##### And lastly, here's my public key if you'd rather get it here
+
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
@@ -166,6 +177,7 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 #### `brew install`
 
 ##### Setup on a new computer
+
 ```bash
 # install homebrew
 ~ $ /bin/bash -c "$(curl -fsSL                                               \
@@ -177,30 +189,33 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 # :: brew list --formula | fmt -w72 | xargs -I{} printf "%4s%-73s\\\\\n" '' '{}'
 ~ $ brew tap aws/tap
 ~ $ brew install                                                             \
-    adns aom apr apr-util argon2 aspell assimp autoconf aws-sam-cli bash     \
-    bash-completion bash-completion@2 bdw-gc berkeley-db boost brotli buf    \
-    c-ares ca-certificates cairo cloc curl curl-openssl dav1d dbus docbook   \
-    docbook-xsl docker docker-completion dotnet double-conversion ffmpeg     \
-    flac fmt fontconfig freetds freetype frei0r fribidi gd gdbm gettext      \
-    ghostscript giflib git git-flow glib gmp gnu-getopt gnu-sed gnupg gnutls \
-    go gobject-introspection graphite2 guile harfbuzz helm hunspell icu4c    \
-    ilmbase imagemagick imath jansson jasper jbig2dec jemalloc jpeg jpeg-xl  \
-    jq krb5 kubernetes-cli lame leptonica libass libassuan libb2 libbluray   \
-    libde265 libebml libev libevent libffi libgcrypt libgpg-error libheif    \
-    libidn libidn2 libksba liblqr libmagic libmatroska libmetalink           \
-    libnghttp2 libogg libomp libpcap libpng libpq libpthread-stubs           \
+    act adns aom apr apr-util argon2 aspell assimp autoconf aws-sam-cli bash \
+    bash-completion bash-completion@2 bat bdw-gc berkeley-db boost brotli    \
+    buf c-ares ca-certificates cairo cjson cloc cmake cmocka curl dav1d dbus \
+    docbook docbook-xsl double-conversion exa ffmpeg flac fmt fontconfig     \
+    freetds freetype frei0r fribidi gd gdbm gettext gh ghostscript giflib    \
+    git git-flow glib gmp gnu-getopt gnu-sed gnupg gnutls go                 \
+    gobject-introspection graphite2 guile harfbuzz helm highway httpd        \
+    hunspell icu4c ilmbase imagemagick imath ipfs jansson jasper jbig2dec    \
+    jemalloc jpeg jpeg-turbo jpeg-xl jq krb5 kubernetes-cli lame leptonica   \
+    libarchive libass libassuan libavif libb2 libbluray libde265 libebml     \
+    libev libevent libffi libgcrypt libgpg-error libheif libidn libidn2      \
+    libksba liblqr libmagic libmatroska libmetalink libmng libnghttp2 libogg \
+    libomp libpcap libpng libpq libpthread-stubs libraw librist              \
     libsamplerate libsndfile libsodium libsoxr libssh2 libtasn1 libtiff      \
-    libtool libunistring libusb libuv libvidstab libvmaf libvorbis libvpx    \
-    libx11 libxau libxcb libxdmcp libxext libxrender libyaml libzip          \
-    little-cms2 lua lz4 lzo m4 macos-term-size make md4c mkvtoolnix          \
-    mpdecimal ncurses nettle nghttp2 nlohmann-json node node@10 node@14 npth \
-    oniguruma opencore-amr openexr openjpeg openldap openssl@1.1 opus        \
-    p11-kit pcre pcre2 perl php pinentry pip-completion pixman pkg-config    \
-    protobuf pugixml python@3.8 python@3.9 qt rav1e readline rtmpdump        \
+    libtool libunibreak libunistring libusb libuv libvidstab libvmaf         \
+    libvorbis libvpx libx11 libxau libxcb libxdmcp libxext libxrender        \
+    libyaml libzip little-cms2 lua lz4 lzo m4 macos-term-size make mbedtls   \
+    md4c mkvtoolnix mongodb-community mongodb-database-tools mongosh         \
+    mpdecimal mpg123 ncurses nettle nghttp2 nlohmann-json node node@14       \
+    node@16 node@18 npth oniguruma opencore-amr openexr openjpeg openldap    \
+    openssl@1.1 openssl@3 opus p11-kit pango pcre pcre2 perl php pinentry    \
+    pip-completion pixman pkg-config protobuf pugixml pyenv python@3.10      \
+    python@3.11 python@3.8 python@3.9 qt rav1e readline rover rtmpdump       \
     rubberband ruby sdl2 shared-mime-info six snappy snyk speex sqlite srt   \
-    subversion tcl-tk tcpdump terraform terraform@0.12 tesseract theora      \
-    tidy-html5 unbound unixodbc utf8cpp utf8proc vim watchexec webp x264     \
-    x265 xmlto xorgproto xvid xz zeromq zimg zstd                            \
+    subversion tcl-tk tcpdump terraform tesseract theora tidy-html5 tmux     \
+    unbound unixodbc utf8cpp utf8proc vim watchexec webp wget x264 x265      \
+    xmlstarlet xmlto xorgproto xvid xz zeromq zimg zstd                      \
     ;
 ```
 
@@ -208,16 +223,16 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 # install brew formulae (from 'brew list --cask')
 # :: brew list --cask | fmt -w72 | xargs -I{} printf "%4s%-73s\\\\\n" '' '{}'
 ~ $ brew cask install                                                        \
-    adobe-creative-cloud alfred cleanmymac docker dropbox font-fira-code     \
-    font-source-code-pro google-chrome keybase ledger-live ngrok plex sketch \
-    slack spotify tor-browser transmission tunnelblick visual-studio-code    \
-    vlc                                                                      \
+    adobe-creative-cloud alfred bitwarden brooklyn cleanmymac discord docker \
+    dropbox font-source-code-pro google-chrome insomnia keybase ledger-live  \
+    ngrok notion plex signal sketch slack spotify tor-browser transmission   \
+    tunnelblick visual-studio-code vlc                                       \
     ;
 ```
 
 ```bash
 # link defaults
-~ $ brew link --force --overwrite python@3.9
+~ $ brew link --force --overwrite python@3.10
 ~ $ brew link --force --overwrite node@14
 ~ $ CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib ;       \
         /usr/local/bin/python3 -m pip install --upgrade setuptools wheel pip
@@ -227,6 +242,7 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 #### `pipx install`
 
 ##### Setup on a new computer
+
 ```bash
 # install pipx
 ~ $ CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib ;       \
@@ -239,7 +255,7 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 ~ $ CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib ;       \
     brew uninstall --ignore-dependencies c-ares ;                            \
     for package in                                                           \
-        awscli black flake8 isort mypy mypy-protobuf poetry py-spy pytest    \
+        black flake8 isort jinja2-cli mypy mypy-protobuf py-spy pytest ruff  \
         tomodachi[aiodns,brotli,protobuf,uvloop] twine                       \
     ; do                                                                     \
         package_basic=$(sed 's/^\([^ []*\)\[[^]]*\]/\1/' <<< $package) ;     \
@@ -263,26 +279,56 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
     done
 ```
 
+#### install poetry
+
+```bash
+# install poetry
+curl -sSL https://install.python-poetry.org | /usr/local/bin/python3 -
+```
+
+#### python2 installation (if needed for very old libs)
+
+```bash
+# install python2 via pyenv
+pyenv install 2.7
+sudo ln -s ~/.pyenv/versions/2.7.18/bin/python2 /usr/local/bin/python2
+```
+
 #### `vscode`
 
 ##### Setup on a new computer
+
 ```bash
 # install vscode extensions (from 'code --list-extensions')
 # :: code --list-extensions | fmt -w68 | xargs -I{} printf "%8s%-69s\\\\\n" '' '{}'
 ~ $ for extension in \
-        almenon.arepl batisteo.vscode-django dbaeumer.vscode-eslint          \
+        almenon.arepl apollographql.vscode-apollo batisteo.vscode-django     \
+        be5invis.vscode-custom-css bierner.markdown-preview-github-styles    \
+        cssho.vscode-svgviewer DavidAnson.vscode-markdownlint                \
+        dbaeumer.vscode-eslint donjayamanne.python-environment-manager       \
         donjayamanne.python-extension-pack dsebastien.vscode-python-pack     \
         eamodio.gitlens Equinusocio.vsc-community-material-theme             \
         Equinusocio.vsc-material-theme equinusocio.vsc-material-theme-icons  \
-        flowtype.flow-for-vscode GitHub.codespaces GraphQL.vscode-graphql    \
-        jbw91.theme-material-dark-soda JuanBlanco.solidity                   \
-        lextudio.restructuredtext magicstack.MagicPython                     \
-        mgesbert.python-path ms-azuretools.vscode-docker ms-python.python    \
+        file-icons.file-icons flowtype.flow-for-vscode GitHub.codespaces     \
+        GitHub.copilot GitHub.github-vscode-theme GraphQL.vscode-graphql     \
+        GraphQL.vscode-graphql-execution GraphQL.vscode-graphql-syntax       \
+        hbenl.vscode-test-explorer jbw91.theme-material-dark-soda            \
+        JuanBlanco.solidity kdcro101.favorites KevinRose.vsc-python-indent   \
+        lextudio.restructuredtext littlefoxteam.vscode-python-test-adapter   \
+        magicstack.MagicPython mgesbert.python-path                          \
+        ms-azuretools.vscode-docker ms-python.isort ms-python.python         \
         ms-python.vscode-pylance ms-toolsai.jupyter                          \
-        ms-vscode-remote.remote-containers PKief.material-icon-theme         \
-        rioj7.command-variable snyk-security.snyk-vulnerability-scanner      \
-        vangware.dark-plus-material VisualStudioExptTeam.vscodeintellicode   \
-        wholroyd.jinja zxh404.vscode-proto3                                  \
+        ms-toolsai.jupyter-keymap ms-toolsai.jupyter-renderers               \
+        ms-toolsai.vscode-jupyter-cell-tags                                  \
+        ms-toolsai.vscode-jupyter-slideshow                                  \
+        ms-vscode-remote.remote-containers ms-vscode.makefile-tools          \
+        ms-vscode.test-adapter-converter njpwerner.autodocstring             \
+        PKief.material-icon-theme rioj7.command-variable                     \
+        ryuta46.multi-command snyk-security.snyk-vulnerability-scanner       \
+        trond-snekvik.simple-rst vangware.dark-plus-material                 \
+        VisualStudioExptTeam.intellicode-api-usage-examples                  \
+        VisualStudioExptTeam.vscodeintellicode wholroyd.jinja                \
+        zxh404.vscode-proto3                                                 \
     ; do code --install-extension $extension; done
 ```
 
