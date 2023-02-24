@@ -264,7 +264,7 @@ function _release_ssh_agent_lock() {
 
 function start-ssh-agent() {
     local dirname=$(dirname $SSH_ENV)
-    if [ ! -d "$dirname" ] || [ "$USER" = "vscode" ] || [ "$USER" = "root" ]; then
+    if [ ! -d "$dirname" ] || [ "$USER" = "vscode" ] || [ "$USER" = "root" ] || [ "$(whoami)" = "vscode" ] || [ "$(whoami)" = "root" ]; then
         return
     fi
 
