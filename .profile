@@ -202,7 +202,7 @@ function _is_ssh_agent_running()
         return 1
     fi
 
-    if [[ "${SSH_AGENT_PID}" ]] && /bin/ps -p ${SSH_AGENT_PID} -o uid,user,comm | /usr/bin/grep "^\s*$USERID\s\s*$USER\s\s*\(/usr/bin/ssh-agent\|ssh-agent\)\$" > /dev/null; then
+    if [[ "${SSH_AGENT_PID}" ]] && /bin/ps -p ${SSH_AGENT_PID} -o uid,user,comm | grep "^\s*$USERID\s\s*$USER\s\s*\(/usr/bin/ssh-agent\|ssh-agent\)\$" > /dev/null; then
         return 0
     fi
 
@@ -210,7 +210,7 @@ function _is_ssh_agent_running()
     local SSH_AUTH_SOCK=
 
     _export_ssh_agent_data
-    if [[ "${SSH_AGENT_PID}" ]] && /bin/ps -p ${SSH_AGENT_PID} -o uid,user,comm | /usr/bin/grep "^\s*$USERID\s\s*$USER\s\s*\(/usr/bin/ssh-agent\|ssh-agent\)\$" > /dev/null; then
+    if [[ "${SSH_AGENT_PID}" ]] && /bin/ps -p ${SSH_AGENT_PID} -o uid,user,comm | grep "^\s*$USERID\s\s*$USER\s\s*\(/usr/bin/ssh-agent\|ssh-agent\)\$" > /dev/null; then
         return 0
     else
         return 1
@@ -264,7 +264,7 @@ function _release_ssh_agent_lock() {
 
 function start-ssh-agent() {
     local dirname=$(dirname $SSH_ENV)
-    if [ ! -d "$dirname" ] || [ "$USER" = "vscode" ]; then
+    if [ ! -d "$dirname" ] || [ "$USER" = "vscode" ] || [ "$USER" = "root" ]; then
         return
     fi
 
@@ -295,7 +295,7 @@ function start-ssh-agent() {
     local cmd_output=
     local error_exit_code=
 
-    if cmd_output=$(/usr/bin/ssh-agent -s 2>&1) && echo $cmd_output | /usr/bin/sed 's/^echo/# echo/' > "${SSH_ENV}" && [[ "${PIPESTATUS[0]}" -eq 0 ]]; then
+    if cmd_output=$(/usr/bin/ssh-agent -s 2>&1) && echo $cmd_output | sed 's/^echo/# echo/' > "${SSH_ENV}" && [[ "${PIPESTATUS[0]}" -eq 0 ]]; then
         /bin/chmod 600 "${SSH_ENV}"
         error_exit_code=0
         if _is_ssh_agent_running; then
