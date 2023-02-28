@@ -21,6 +21,10 @@
         "suppressLineUncommittedWarning": true,
         "suppressNoRepositoryWarning": false,
     },
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
     "python.pythonPath": "/usr/local/bin/python3",
     "python.autoComplete.addBrackets": true,
     "editor.renderWhitespace": "boundary",
@@ -34,7 +38,6 @@
     ],
     "python.linting.enabled": true,
     "python.linting.mypyEnabled": true,
-    "editor.codeActionsOnSave": {},
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "python.linting.mypyPath": "/Users/kalaspuff/.local/bin/mypy",
