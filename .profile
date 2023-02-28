@@ -374,6 +374,102 @@ function ens() {
     fi
 }
 
+function connect-bluetooth() {
+    if ! which blueutil > /dev/null || ! which BluetoothConnector > /dev/null; then
+        echo "error: install missing dependencies:"
+        echo "$ brew install blueutil bluetoothconnector"
+        return 1
+    fi
+
+    if /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -w SSID: | grep "xxxxxxxxxxx" > /dev/null; then
+        echo "info: assuming uppsala setup"
+        is_uppsala=1
+    elif /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -w SSID: | grep "xxxxxxxxxxx" > /dev/null; then
+        echo "info: assuming malmö setup"
+        is_malmo=1
+    else
+        echo "error: cannot assume setup"
+        return 1
+    fi
+
+    echo ""
+    sleep 1
+
+    trackpad_uppsala_address="xx-xx-xx-xx-xx-xx"
+    keyboard_uppsala_address="xx-xx-xx-xx-xx-xx"
+
+    trackpad_malmo_address="xx-xx-xx-xx-xx-xx"
+    keyboard_malmo_address="xx-xx-xx-xx-xx-xx"
+
+    if [ $is_uppsala ]; then
+        echo -n "unpairing trackpad (uppsala) ... "
+        BluetoothConnector --disconnect $trackpad_uppsala_address
+        blueutil --unpair $trackpad_uppsala_address
+        echo "done"
+        sleep 1
+
+        echo -n "unpairing keyboard (uppsala) ... "
+        BluetoothConnector --disconnect $keyboard_uppsala_address
+        blueutil --unpair $keyboard_uppsala_address
+        echo "done"
+        sleep 1
+    fi
+
+    if [ $is_malmo ]; then
+        echo -n "unpairing trackpad (malmö)   ... "
+        BluetoothConnector --disconnect $trackpad_malmo_address
+        blueutil --unpair $trackpad_malmo_address
+        echo "done"
+        sleep 1
+
+        echo -n "unpairing keyboard (malmö)   ... "
+        BluetoothConnector --disconnect $keyboard_malmo_address
+        blueutil --unpair $keyboard_malmo_address
+        echo "done"
+        sleep 1
+    fi
+
+    echo ""
+    sleep 1
+
+    echo -n "hardware restart devices now ... "
+    i=10; while [ $i -gt 0 ]; do
+        echo -n $i;
+        sleep 1;
+        ilen=$(echo -n $i | wc -c | xargs -n1);
+        echo -ne "\e[${ilen}D  \e[2D";
+        i=$((i - 1));
+    done;
+    echo "done"
+
+    echo ""
+    sleep 1
+
+    if [ $is_uppsala ]; then
+        echo -n "reconnect trackpad (uppsala) ... "
+        blueutil --pair $trackpad_uppsala_address
+        BluetoothConnector --connect $trackpad_uppsala_address
+        echo "done"
+
+        echo -n "reconnect keyboard (uppsala) ... "
+        blueutil --pair $keyboard_uppsala_address
+        BluetoothConnector --connect $keyboard_uppsala_address
+        echo "done"
+    fi
+
+    if [ $is_malmo ]; then
+        echo -n "reconnect trackpad (malmö)   ... "
+        blueutil --pair $trackpad_malmo_address
+        BluetoothConnector --connect $trackpad_malmo_address
+        echo "done"
+
+        echo -n "reconnect keyboard (malmö)   ... "
+        blueutil --pair $keyboard_malmo_address
+        BluetoothConnector --connect $keyboard_malmo_address
+        echo "done"
+    fi
+}
+
 
 # misc pasteboard shenanigans
 alias pbjq='pbpaste | jq'
