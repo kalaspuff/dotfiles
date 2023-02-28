@@ -19,7 +19,7 @@
         "suppressFileNotUnderSourceControlWarning": false,
         "suppressGitVersionWarning": false,
         "suppressLineUncommittedWarning": true,
-        "suppressNoRepositoryWarning": false,
+        "suppressNoRepositoryWarning": false
     },
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
