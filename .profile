@@ -470,6 +470,12 @@ function connect-bluetooth() {
     fi
 }
 
+function techno() {
+    echo -n "Playing 'Techno on my Monday Morning' on Spotify"
+    osascript -e 'tell application "Spotify" to play track "spotify:user:kalaspuff:playlist:3KrZnBrru7Z3l36a0ml255"'
+    osascript -e 'tell application "Spotify" to set shuffling to true'
+}
+
 
 # misc pasteboard shenanigans
 alias pbjq='pbpaste | jq'
