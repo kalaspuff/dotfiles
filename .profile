@@ -471,9 +471,20 @@ function connect-bluetooth() {
 }
 
 function techno() {
-    echo -n "Playing 'Techno on my Monday Morning' on Spotify"
+    _print_shell_notice_start "playing playlist 'Techno on my Monday Morning' on Spotify"
     osascript -e 'tell application "Spotify" to play track "spotify:user:kalaspuff:playlist:3KrZnBrru7Z3l36a0ml255"'
-    osascript -e 'tell application "Spotify" to set shuffling to true'
+    if [ "$(osascript -e 'tell application "Spotify" to shuffling')" = false ]; then
+        osascript -e 'tell application "Spotify" to set shuffling to true'
+        _print_shell_notice_success "started"
+    else
+        _print_shell_notice_success "started"
+    fi
+}
+
+function pause-music() {
+    _print_shell_notice_start "pausing spotify"
+    osascript -e 'tell application "Spotify" to pause'
+    _print_shell_notice_success "paused"
 }
 
 
