@@ -3,7 +3,7 @@
 [ -z $BREW_PREFIX ] && export BREW_PREFIX=/opt/homebrew
 
 export SSH_ENV="$HOME/.ssh/env"
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/Library/Python/3.10/bin:/usr/local/bin:${BREW_PREFIX}/opt/python/bin:${BREW_PREFIX}/bin:${BREW_PREFIX}/opt/curl-openssl/bin:$HOME/.foundry/bin:$PATH"
+export PATH="$HOME/Library/Python/3.11/bin:$HOME/.local/bin:/usr/local/bin:${BREW_PREFIX}/opt/python/bin:${BREW_PREFIX}/bin:${BREW_PREFIX}/opt/curl-openssl/bin:$HOME/.foundry/bin:$PATH"
 export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/curl-openssl/lib/pkgconfig"
 export LDFLAGS="-L${BREW_PREFIX}/opt/curl-openssl/lib"
 export CPPFLAGS="-I${BREW_PREFIX}/opt/curl-openssl/include"
@@ -35,7 +35,6 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-
 __bash_prompt_local() {
     local errorexit='`export XIT=$? \
         && [ "$XIT" -ne "0" ] && echo -n "\[\033[0;1;91m\]≡\[\033[0m\] " || echo -n "\[\033[1;37m\]≡ \[\033[0m\]"`'
@@ -59,11 +58,11 @@ __bash_prompt_local() {
             fi; \
         fi \
         && [ -z "$XIT" ] || [ "$XIT" -eq "0" ]`'
-	    local cwd='`export XIT=$? && export CWD=$(pwd | sed "s/.\{1,\}\/\([^\/]*\)/\1/") \
+    local cwd='`export XIT=$? && export CWD=$(pwd | sed "s/.\{1,\}\/\([^\/]*\)/\1/") \
         && if [ "$(git config --get codespaces-theme.hide-status 2>/dev/null)" != 1 ]; then \
             if [ "${CWD}" != "" ]; then \
                 echo -n "\[\033[0;97m\]⌁ \[\033[0;1;34m\] \[\033[1;34m\]${CWD}"; \
-		[ "$(pwd)" = "${HOME}" ] && echo -n " (~)";
+               [ "$(pwd)" = "${HOME}" ] && echo -n " (~)";
             fi; \
         fi \
         && [ -z "$XIT" ] || [ "$XIT" -eq "0" ]`'
@@ -114,10 +113,8 @@ __bash_prompt_codespace() {
     unset -f __bash_prompt_local
 }
 
-# __bash_prompt_local
-__bash_prompt_codespace
-export PROMPT_DIRTRIM=4
-
+# [ -f /opt/homebrew/bin/brew ] && eval "$(brew shellenv)"
+# [ -f /usr/local/bin/brew ] && eval "$(brew shellenv)"
 
 function _print_shell_notice_start() {
     echo -en "\e[0;37m[\e[1;37mnotice\e[0;37m]\e[00m "
@@ -181,7 +178,7 @@ function _print_shell_notice_cmd_error() {
 }
 
 function jitter_sleep() {
-    local python_process=$(if [ -e /usr/local/bin/python3 ]; then echo -n "/usr/local/bin/python3"; else echo -n "/usr/bin/python3"; fi)
+    local python_process=$(if [ -e ${BREW_PREFIX}/bin/python3 ]; then echo -n "${BREW_PREFIX}/bin/python3"; elif [ -e ${BREW_PREFIX}/opt/python/bin/python3 ]; then echo -n "${BREW_PREFIX}/opt/python/bin/python3"; else echo -n "/usr/bin/python3"; fi)
     if [ $# -eq 2 ]; then
         $python_process -c "import random; import time; time.sleep(min(float($1), float($2)) + random.random() * (max(float($1), float($2)) - min(float($1), float($2))));" 2> /dev/null > /dev/null
     else
@@ -198,7 +195,7 @@ function _export_ssh_agent_data() {
 
 function _is_ssh_agent_running()
 {
-    if [ ! -d "$dirname" ] || [ "$USER" = "vscode" ]; then
+    if [ ! -z $dirname ] && ([ ! -d "$dirname" ] || [ "$USER" = "vscode" ]); then
         return 1
     fi
 
@@ -323,11 +320,12 @@ else
 fi
 
 # bash completion
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+[ -f ${BREW_PREFIX}/etc/bash_completion ] && source ${BREW_PREFIX}/etc/bash_completion
+[ -f ${BREW_PREFIX}/opt/bash-completion@2/etc/profile.d/bash_completion.sh ] && source ${BREW_PREFIX}/opt/bash-completion@2/etc/profile.d/bash_completion.sh
 
 # docker-nice-to-haves
 alias docker-remove-dangling='docker rmi $(docker images --filter="dangling=true" -aq) --force'
-export DOCKER_DEV_NETWORK=
+export DOCKER_DEV_NETWORK=devnetwork
 
 function di() {
     if [ $# -eq 0 ]; then
@@ -495,8 +493,9 @@ alias phpunserialize='php -r "echo json_encode(unserialize(stream_get_contents(S
 # python in docker / ease-of-access / every-day-life-quality
 export DOCKER_BASE_IMAGE_PYTHON=
 export DOCKER_BASE_DEV_IMAGE_PYTHON=
-alias pybase='docker run --entrypoint "" -ti `if [ -d ${PWD}/app ]; then echo -n "-v ${PWD}/app:/app"; fi` -v ${PWD}:/vol -w /vol --network=$DOCKER_DEV_NETWORK -e CONFIG_DATA="`(if [ -e config.json ]; then cat config.json; else if [ -e config.example.json ]; then cat config.example.json; fi; fi)`" -e DEVLOG=1 -e PYTHONPATH=app/src:src:/vol/app/src $DOCKER_BASE_IMAGE_PYTHON /bin/bash'
-alias pydev='docker run --entrypoint "" -ti `if [ -d ${PWD}/app ]; then echo -n "-v ${PWD}/app:/app"; fi` -v ${PWD}:/vol -w /vol --network=$DOCKER_DEV_NETWORK -e CONFIG_DATA="`(if [ -e config.json ]; then cat config.json; else if [ -e config.example.json ]; then cat config.example.json; fi; fi)`" -e DEVLOG=1 -e PYTHONPATH=app/src:src:/vol/app/src $DOCKER_BASE_DEV_IMAGE_PYTHON /bin/bash'
+alias pybase='docker run --entrypoint "" -ti `if [ -d ${PWD}/app ]; then echo -n "-v ${PWD}/app:/app"; fi` -v ${PWD}:/vol -w /vol --network=$DOCKER_DEV_NETWORK -e CONFIG_DATA="`(if [ -e config.json ]; then cat config.json; else if [ -e config.example.json ]; then cat config.example.json; fi; fi)`" -e DEVLOG=1 -e PYTHONPATH=/app/src:app/src:src:/vol/app/src $DOCKER_BASE_IMAGE_PYTHON /bin/bash'
+alias pydev='docker run --entrypoint "" -ti `if [ -d ${PWD}/app ]; then echo -n "-v ${PWD}/app:/app"; fi` -v ${PWD}:/vol -w /vol --network=$DOCKER_DEV_NETWORK -e CONFIG_DATA="`(if [ -e config.json ]; then cat config.json; else if [ -e config.example.json ]; then cat config.example.json; fi; fi)`" -e DEVLOG=1 -e PYTHONPATH=/app/src:app/src:src:/vol/app/src $DOCKER_BASE_DEV_IMAGE_PYTHON /bin/bash'
+alias pydev-without-mount='docker run --entrypoint "" -ti -w /vol --network=$DOCKER_DEV_NETWORK -e DEVLOG=1 -e PYTHONPATH=/app/src:app/src:src:/vol/app/src $DOCKER_BASE_DEV_IMAGE_PYTHON /bin/bash'
 
 # code interpreters
 alias haskell='docker run -ti haskell ghci'
@@ -637,8 +636,9 @@ alias screensaver-quit='killall ScreenSaverEngine'
 
 # other things I otherwise forget about
 alias wifiscan='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan'
-alias terraform-old='/usr/local/opt/terraform\@0.12/bin/terraform'
-alias terraform-0.12='/usr/local/opt/terraform\@0.12/bin/terraform'
+alias hardhat='npx hardhat'
+alias hh='npx hardhat'
+alias unquarantine='sudo xattr -d com.apple.quarantine'
 alias recommended-ami-eks-17='aws ssm get-parameter --profile awsprofile-xxx --name /aws/service/eks/optimized-ami/1.17/amazon-linux-2/recommended/image_id --region eu-west-1 --query "Parameter.Value" --output text'
 alias recommended-ami-eks-18='aws ssm get-parameter --profile awsprofile-xxx --name /aws/service/eks/optimized-ami/1.18/amazon-linux-2/recommended/image_id --region eu-west-1 --query "Parameter.Value" --output text'
 alias recommended-ami-eks-19='aws ssm get-parameter --profile awsprofile-xxx --name /aws/service/eks/optimized-ami/1.19/amazon-linux-2/recommended/image_id --region eu-west-1 --query "Parameter.Value" --output text'
@@ -647,15 +647,17 @@ alias recommended-ami-eks-21='aws ssm get-parameter --profile awsprofile-xxx --n
 alias recommended-ami-eks-22='aws ssm get-parameter --profile awsprofile-xxx --name /aws/service/eks/optimized-ami/1.22/amazon-linux-2/recommended/image_id --region eu-west-1 --query "Parameter.Value" --output text'
 alias cloc-microservice='cloc --exclude-dir=.mypy_cache,__pycache__,proto_build,dist,.git,.venv,.pytest_cache.vscode,library,tests .'
 
-# v
-alias vtag='victoria tag'
-alias vh='victoria commit-hash'
-alias vd='victoria deploy'
-alias vtest='victoria test'
-alias vt='victoria test'
-alias vsh='victoria shell'
-alias vlp='victoria lp'
-alias vex='victoria remote-shell'
-alias vrsh='victoria remote-shell'
-alias vrs='victoria remote-shell'
-alias vssh='victoria remote-shell'
+function title-prompt() {
+    echo -n -e "\033]0;$1\007"
+}
+
+function code-prompt() {
+    export PS1='\[\033[00m\]\[\033[01;32m\]user@machine\[\033[00m\]:\[\033[01;34m\]~/code/verifier-contract\[\033[00m\]\$ '
+}
+
+[[ "$(uname)" = "Darwin" ]] && __bash_prompt_local || __bash_prompt_codespace
+export PROMPT_DIRTRIM=4
+
+which github-copilot-cli > /dev/null && eval "$(github-copilot-cli alias -- "$0")"
+
+. "$HOME/.cargo/env"

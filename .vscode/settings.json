@@ -21,12 +21,6 @@
         "suppressLineUncommittedWarning": true,
         "suppressNoRepositoryWarning": false
     },
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    },
-    "python.pythonPath": "/usr/local/bin/python3",
-    "python.autoComplete.addBrackets": true,
     "editor.renderWhitespace": "boundary",
     "diffEditor.ignoreTrimWhitespace": false,
     "workbench.editor.labelFormat": "short",
@@ -36,8 +30,13 @@
     "isort.path": [
         "/Users/kalaspuff/.local/bin/isort"
     ],
+    "isort.args": [
+        "--profile",
+        "black"
+    ],
     "python.linting.enabled": true,
     "python.linting.mypyEnabled": true,
+    "editor.codeActionsOnSave": {},
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "python.linting.mypyPath": "/Users/kalaspuff/.local/bin/mypy",
@@ -57,7 +56,10 @@
             "!Module"
         ],
         "editor.wordBasedSuggestions": false,
-        "editor.formatOnType": true
+        "editor.formatOnType": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
     },
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
@@ -66,16 +68,7 @@
         "default": "right",
         "jupyter-notebook": "left"
     },
-    "python.defaultInterpreterPath": "/usr/local/bin/python3",
-    "snyk.yesWelcomeNotification": false,
-    "snyk.token": "",
-    "snyk.codeEnabled": false,
-    "snyk.features.codeQuality": false,
-    "snyk.features.codeSecurity": false,
-    "snyk.yesCrashReport": false,
-    "snyk.yesTelemetry": false,
-    "snyk.features.openSourceSecurity": false,
-    "snyk.advanced.automaticDependencyManagement": false,
+    "python.defaultInterpreterPath": "/usr/local/bin/python",
     "editor.inlineSuggest.enabled": true,
     "editor.fontSize": 11,
     "editor.fontWeight": "600",
@@ -88,16 +81,40 @@
     "explorer.enableUndo": false,
     "github.copilot.enable": {
         "*": true,
-        "yaml": false,
         "plaintext": true,
-        "markdown": true
+        "markdown": true,
+        "scminput": false,
+        "yaml": true,
+        "toml": true,
+        "md": true,
+        "ini": false,
+        "env": false
     },
     "solidity.formatter": "forge",
     "terminal.integrated.fontFamily": "SauceCodePro NFM,Source Code Pro,monospace",
     "terminal.integrated.fontWeight": "normal",
     "terminal.integrated.shellIntegration.decorationsEnabled": "never",
     "explorer.compactFolders": false,
+    "workbench.iconTheme": "vscode-icons",
+    "dotfiles.repository": "kalaspuff/dotfiles",
+    "files.insertFinalNewline": true,
+    "editor.formatOnSave": true,
+    "isort.check": true,
+    "files.trimFinalNewlines": true,
+    "debug.onTaskErrors": "abort",
     "workbench.activityBar.visible": false,
-    "workbench.iconTheme": "file-icons",
-    "dotfiles.repository": "kalaspuff/dotfiles"
+    "python.formatting.blackArgs": [
+        "-l 120"
+    ],
+    "flake8.args": [
+        "--max-line-length",
+        "120"
+    ],
+    "python.linting.flake8Args": [
+        "--max-line-length",
+        "120"
+    ],
+    "editor.guides.bracketPairs": true,
+    "editor.accessibilitySupport": "off",
+    "git.openRepositoryInParentFolders": "never"
 }
