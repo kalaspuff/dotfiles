@@ -356,9 +356,9 @@ function ens() {
     if [[ "$1" = "-"* ]]; then
         if [[ "$1" = "-r" ]] || [[ "$1" = "--reverse" ]]; then
             is_reverse=1
-        shift
+            shift
         else
-        echo "Invalid option: $1"
+            echo "Invalid option: $1"
             return 1
         fi
     fi
