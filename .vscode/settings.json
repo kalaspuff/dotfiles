@@ -27,27 +27,17 @@
     "gitlens.codeLens.scopes": [
         "document"
     ],
-    "isort.path": [
-        "/Users/kalaspuff/.local/bin/isort"
-    ],
     "isort.args": [
         "--profile",
         "black"
     ],
-    "python.linting.enabled": true,
-    "python.linting.mypyEnabled": true,
-    "editor.codeActionsOnSave": {},
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "python.linting.mypyPath": "/Users/kalaspuff/.local/bin/mypy",
-    "python.linting.flake8Path": "/Users/kalaspuff/.local/bin/flake8",
     "python.languageServer": "Pylance",
     "python.analysis.completeFunctionParens": true,
     "editor.cursorWidth": 2,
     "editor.cursorBlinking": "solid",
-    "python.venvPath": "/Users/kalaspuff/Library/Caches/pypoetry/virtualenvs",
-    "python.formatting.blackPath": "/Users/kalaspuff/.local/bin/black",
-    "python.formatting.provider": "black",
+    "python.venvPath": "~/Library/Caches/pypoetry/virtualenvs",
     "docker.commands.build": [],
     "window.newWindowDimensions": "offset",
     "python.analysis.typeCheckingMode": "basic",
@@ -59,7 +49,8 @@
         "editor.formatOnType": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
-        }
+        },
+        "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
@@ -68,7 +59,6 @@
         "default": "right",
         "jupyter-notebook": "left"
     },
-    "python.defaultInterpreterPath": "/usr/local/bin/python",
     "editor.inlineSuggest.enabled": true,
     "editor.fontSize": 11,
     "editor.fontWeight": "600",
@@ -102,19 +92,14 @@
     "isort.check": true,
     "files.trimFinalNewlines": true,
     "debug.onTaskErrors": "abort",
-    "workbench.activityBar.visible": false,
-    "python.formatting.blackArgs": [
-        "-l 120"
-    ],
+    "workbench.activityBar.visible": true,
     "flake8.args": [
-        "--max-line-length",
-        "120"
-    ],
-    "python.linting.flake8Args": [
         "--max-line-length",
         "120"
     ],
     "editor.guides.bracketPairs": true,
     "editor.accessibilitySupport": "off",
-    "git.openRepositoryInParentFolders": "never"
+    "git.openRepositoryInParentFolders": "never",
+    "window.zoomLevel": 1,
+    "scm.experimental.showSyncView": true
 }

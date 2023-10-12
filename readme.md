@@ -316,17 +316,18 @@ sudo ln -s ~/.pyenv/versions/2.7.18/bin/python2 $(brew --prefix)/bin/python2
         donjayamanne.python-extension-pack dsebastien.vscode-python-pack     \
         eamodio.gitlens Equinusocio.vsc-community-material-theme             \
         Equinusocio.vsc-material-theme equinusocio.vsc-material-theme-icons  \
-        figma.figma-vscode-extension file-icons.file-icons                   \
-        flowtype.flow-for-vscode GitHub.codespaces GitHub.copilot            \
-        GitHub.copilot-chat GitHub.github-vscode-theme                       \
+        file-icons.file-icons flowtype.flow-for-vscode GitHub.codespaces     \
+        GitHub.copilot GitHub.copilot-chat GitHub.github-vscode-theme        \
         GraphQL.vscode-graphql-execution GraphQL.vscode-graphql-syntax       \
         hbenl.vscode-test-explorer jbw91.theme-material-dark-soda            \
         JuanBlanco.solidity KevinRose.vsc-python-indent                      \
         littlefoxteam.vscode-python-test-adapter magicstack.MagicPython      \
-        mgesbert.python-path ms-azuretools.vscode-docker ms-python.flake8    \
-        ms-python.isort ms-python.python ms-python.vscode-pylance            \
-        ms-toolsai.jupyter ms-toolsai.jupyter-keymap                         \
-        ms-toolsai.jupyter-renderers ms-toolsai.vscode-jupyter-cell-tags     \
+        mgesbert.python-path ms-azuretools.vscode-docker                     \
+        ms-python.black-formatter ms-python.flake8 ms-python.isort           \
+        ms-python.mypy-type-checker ms-python.python                         \
+        ms-python.vscode-pylance ms-toolsai.jupyter                          \
+        ms-toolsai.jupyter-keymap ms-toolsai.jupyter-renderers               \
+        ms-toolsai.vscode-jupyter-cell-tags                                  \
         ms-toolsai.vscode-jupyter-slideshow                                  \
         ms-vscode-remote.remote-containers ms-vscode.makefile-tools          \
         ms-vscode.test-adapter-converter njpwerner.autodocstring             \
