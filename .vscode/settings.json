@@ -1,7 +1,14 @@
 {
     "workbench.startupEditor": "newUntitledFile",
-    "editor.fontFamily": "Source Code Pro",
-    "editor.fontLigatures": false,
+    "editor.fontFamily": "monaspace argon,Source Code Pro",
+    "editor.fontSize": 11,
+    "editor.fontWeight": "500",
+    "editor.fontVariations": false,
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontFamily": "monaspace neon,SauceCodePro NFM,Source Code Pro,monospace",
+    "terminal.integrated.fontWeight": "500",
+    "terminal.integrated.fontSize": 11,
+    "terminal.integrated.fontWeightBold": "600",
     "files.autoSave": "onFocusChange",
     "files.trimTrailingWhitespace": true,
     "editor.tokenColorCustomizations": {
@@ -46,11 +53,23 @@
             "!Module"
         ],
         "editor.wordBasedSuggestions": false,
+        "editor.formatOnSave": true,
         "editor.formatOnType": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
         },
-        "editor.defaultFormatter": "ms-python.black-formatter"
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "[php]": {
+        "editor.formatOnSave": false,
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
     },
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
@@ -60,10 +79,6 @@
         "jupyter-notebook": "left"
     },
     "editor.inlineSuggest.enabled": true,
-    "editor.fontSize": 11,
-    "editor.fontWeight": "600",
-    "terminal.integrated.fontSize": 11,
-    "terminal.integrated.fontWeightBold": "500",
     "workbench.preferredDarkColorTheme": "GitHub Dark",
     "workbench.tips.enabled": false,
     "workbench.colorCustomizations": {},
@@ -81,8 +96,6 @@
         "env": false
     },
     "solidity.formatter": "forge",
-    "terminal.integrated.fontFamily": "SauceCodePro NFM,Source Code Pro,monospace",
-    "terminal.integrated.fontWeight": "normal",
     "terminal.integrated.shellIntegration.decorationsEnabled": "never",
     "explorer.compactFolders": false,
     "workbench.iconTheme": "vscode-icons",
@@ -92,14 +105,25 @@
     "isort.check": true,
     "files.trimFinalNewlines": true,
     "debug.onTaskErrors": "abort",
-    "workbench.activityBar.visible": true,
     "flake8.args": [
         "--max-line-length",
         "120"
     ],
+    "ruff.path": [
+        "~/.local/bin/ruff"
+    ],
+    "extensions.ignoreRecommendations": true,
     "editor.guides.bracketPairs": true,
     "editor.accessibilitySupport": "off",
     "git.openRepositoryInParentFolders": "never",
-    "window.zoomLevel": 1,
-    "scm.experimental.showSyncView": true
+    "scm.experimental.showSyncView": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3.12",
+    "workbench.activityBar.location": "side",
+    "prettier.tabWidth": 4,
+    "telemetry.telemetryLevel": "off",
+    "dotnetAcquisitionExtension.enableTelemetry": false,
+    "gitlens.telemetry.enabled": false,
+    "AREPL.telemetry": false,
+    "postman.telemetry.enabled": false
 }
