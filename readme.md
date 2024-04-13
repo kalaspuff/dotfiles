@@ -191,6 +191,8 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 ~ $ brew tap homebrew/cask-fonts
 ~ $ brew tap homebrew/services
 ~ $ brew tap tilt-dev/tap
+~ $ brew tap oven-sh/bun
+~ $ brew tap mongodb/brew
 ~ $ brew install                                                             \
     abseil act adns aom apr apr-util argon2 aribb24 aspell assimp autoconf   \
     aws-sam-cli bash bash-completion bash-completion@2 bat bdw-gc            \
@@ -219,14 +221,10 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
     openexr openjpeg openldap openssl@1.1 openssl@3 openvino opus p11-kit    \
     pandoc pango pcre pcre2 perl php pinentry pip-completion pixman          \
     pkg-config podman popt protobuf pugixml pycparser pyenv pygments         \
-    python-attrs python-certifi python-charset-normalizer python-click       \
-    python-cryptography python-dateutil python-idna python-jinja             \
-    python-markupsafe python-mpmath python-networkx python-packaging         \
-    python-pbr python-pytz python-requests python-setuptools python-sympy    \
     python-typing-extensions python-urllib3 python@3.10 python@3.11          \
     python@3.12 python@3.8 python@3.9 pyyaml qemu qt rabbitmq rav1e readline \
     rover rsync rtmpdump rubberband ruby sdl2 shared-mime-info six snappy    \
-    snyk speex sqlite srt subversion svt-av1 tailscale tbb tcl-tk tcpdump    \
+    speex sqlite srt subversion svt-av1 tailscale tbb tcl-tk tcpdump    \
     terraform tesseract theora tidy-html5 tilt tmux unbound unixodbc utf8cpp \
     utf8proc vde vim watchexec webp wget wxwidgets x264 x265 xmlstarlet      \
     xmlto xorgproto xvid xxhash xz yq zeromq zimg zstd                       \
