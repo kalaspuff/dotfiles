@@ -379,10 +379,10 @@ function connect-bluetooth() {
         return 1
     fi
 
-    if /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -w SSID: | grep "xxxxxxxxxxx" > /dev/null; then
+    if networksetup -getairportnetwork en0 | sed "s/.*Network: //" | grep "xxxxxxxxxxx" > /dev/null; then
         echo "info: assuming uppsala setup"
         is_uppsala=1
-    elif /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -w SSID: | grep "xxxxxxxxxxx" > /dev/null; then
+    elif networksetup -getairportnetwork en0 | sed "s/.*Network: //" | grep "xxxxxxxxxxx" > /dev/null; then
         echo "info: assuming malmö setup"
         is_malmo=1
     else
@@ -658,6 +658,6 @@ function code-prompt() {
 [[ "$(uname)" = "Darwin" ]] && __bash_prompt_local || __bash_prompt_codespace
 export PROMPT_DIRTRIM=4
 
-which github-copilot-cli > /dev/null && eval "$(github-copilot-cli alias -- "$0")"
+# which github-copilot-cli > /dev/null && eval "$(github-copilot-cli alias -- "$0")"
 
 . "$HOME/.cargo/env"
