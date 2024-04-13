@@ -188,36 +188,48 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 # install brew formulae (from 'brew list --formula')
 # :: brew list --formula | fmt -w72 | xargs -I{} printf "%4s%-73s\\\\\n" '' '{}'
 ~ $ brew tap aws/tap
+~ $ brew tap homebrew/cask-fonts
+~ $ brew tap homebrew/services
+~ $ brew tap tilt-dev/tap
 ~ $ brew install                                                             \
     abseil act adns aom apr apr-util argon2 aribb24 aspell assimp autoconf   \
     aws-sam-cli bash bash-completion bash-completion@2 bat bdw-gc            \
-    berkeley-db bluetoothconnector blueutil boost brotli buf c-ares          \
-    ca-certificates cairo cjson cloc cmake cmocka ctlptl curl dav1d dbus     \
-    docbook docbook-xsl double-conversion erlang exa ffmpeg figlet flac      \
-    flyctl fmt fontconfig freetds freetype frei0r fribidi gd gdbm gettext gh \
+    berkeley-db berkeley-db@5 binutils bluetoothconnector blueutil boost     \
+    brotli buf bun c-ares ca-certificates cairo capstone certifi cffi        \
+    cfn-lint cjson cloc cmake cmocka cookiecutter coreutils cryptography     \
+    ctlptl curl dav1d dbus docbook docbook-xsl docker docker-completion      \
+    double-conversion dtc erlang exa ffmpeg figlet flac flyctl fmt           \
+    fontconfig freetds freetype frei0r fribidi gcc gd gdbm gettext gh        \
     ghostscript giflib git git-flow glib gmp gnu-getopt gnu-sed gnupg gnutls \
     go gobject-introspection graphite2 guile harfbuzz helm highway httpd     \
-    hunspell icu4c ilmbase imagemagick imath ipfs jansson jasper jbig2dec    \
-    jemalloc jpeg jpeg-turbo jpeg-xl jq kind krb5 kubernetes-cli lame        \
-    leptonica libarchive libass libassuan libavif libb2 libbluray libde265   \
-    libebml libev libevent libffi libgcrypt libgit2 libgpg-error libheif     \
-    libidn libidn2 libksba liblqr libmagic libmatroska libmetalink libmng    \
-    libnghttp2 libogg libomp libpcap libpng libpq libpthread-stubs libraw    \
-    librist libsamplerate libsndfile libsodium libsoxr libssh2 libtasn1      \
-    libtiff libtool libunibreak libunistring libusb libuv libvidstab libvmaf \
-    libvorbis libvpx libx11 libxau libxcb libxdmcp libxext libxrender        \
-    libyaml libzip little-cms2 lua lz4 lzo m4 macos-term-size make mbedtls   \
-    md4c mkvtoolnix mongodb-community mongodb-database-tools mongosh         \
-    mpdecimal mpg123 ncurses nettle nghttp2 nlohmann-json node node@14       \
-    node@16 node@18 npth oniguruma opencore-amr openexr openjpeg openldap    \
-    openssl@1.1 openssl@3 opus p11-kit pango pcre pcre2 perl php pinentry    \
-    pip-completion pixman pkg-config popt protobuf pugixml pyenv python@3.10 \
-    python@3.11 python@3.8 python@3.9 qt rabbitmq rav1e readline rover rsync \
-    rtmpdump rubberband ruby sdl2 shared-mime-info six snappy snyk speex     \
-    sqlite srt subversion svt-av1 tcl-tk tcpdump terraform tesseract theora  \
-    tidy-html5 tilt tmux unbound unixodbc utf8cpp utf8proc vim watchexec     \
-    webp wget wxwidgets x264 x265 xmlstarlet xmlto xorgproto xvid xxhash xz  \
-    yq zeromq zimg zstd                                                      \
+    hunspell hwloc icu4c ilmbase imagemagick imap-uw imath ipfs isl jansson  \
+    jasper jbig2dec jemalloc jpeg jpeg-turbo jpeg-xl jq jsoncpp kind krb5    \
+    kubernetes-cli lame leptonica libarchive libass libassuan libavif libb2  \
+    libbluray libde265 libebml libev libevent libffi libgcrypt libgit2       \
+    libgpg-error libheif libidn libidn2 libksba liblqr libmagic libmatroska  \
+    libmetalink libmicrohttpd libmng libmpc libnghttp2 libogg libomp libpcap \
+    libpng libpq libpthread-stubs libraw librist libsamplerate libslirp      \
+    libsndfile libsodium libsoxr libssh libssh2 libtasn1 libtiff libtool     \
+    libunibreak libunistring libusb libuv libvidstab libvmaf libvorbis       \
+    libvpx libx11 libxau libxcb libxdmcp libxext libxrender libyaml libzip   \
+    little-cms2 lua lz4 lzo m4 macos-term-size make mbedtls md4c mkvtoolnix  \
+    mongodb-atlas-cli mongodb-community mongodb-database-tools mongosh       \
+    mpdecimal mpfr mpg123 ncurses nettle nghttp2 nlohmann-json node node@14  \
+    node@16 node@18 npth numpy ollama oniguruma openblas opencore-amr        \
+    openexr openjpeg openldap openssl@1.1 openssl@3 openvino opus p11-kit    \
+    pandoc pango pcre pcre2 perl php pinentry pip-completion pixman          \
+    pkg-config podman popt protobuf pugixml pycparser pyenv pygments         \
+    python-attrs python-certifi python-charset-normalizer python-click       \
+    python-cryptography python-dateutil python-idna python-jinja             \
+    python-markupsafe python-mpmath python-networkx python-packaging         \
+    python-pbr python-pytz python-requests python-setuptools python-sympy    \
+    python-typing-extensions python-urllib3 python@3.10 python@3.11          \
+    python@3.12 python@3.8 python@3.9 pyyaml qemu qt rabbitmq rav1e readline \
+    rover rsync rtmpdump rubberband ruby sdl2 shared-mime-info six snappy    \
+    snyk speex sqlite srt subversion svt-av1 tailscale tbb tcl-tk tcpdump    \
+    terraform tesseract theora tidy-html5 tilt tmux unbound unixodbc utf8cpp \
+    utf8proc vde vim watchexec webp wget wxwidgets x264 x265 xmlstarlet      \
+    xmlto xorgproto xvid xxhash xz yq zeromq zimg zstd                       \
     ;
 ```
 
@@ -225,17 +237,19 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 # install brew formulae (from 'brew list --cask')
 # :: brew list --cask | fmt -w72 | xargs -I{} printf "%4s%-73s\\\\\n" '' '{}'
 ~ $ brew cask install                                                        \
-    adobe-creative-cloud bitwarden brooklyn cleanmymac discord docker        \
-    dropbox element font-source-code-pro google-chrome insomnia keybase      \
-    ledger-live ngrok notion plex raycast signal sketch slack spotify        \
-    tor-browser transmission tunnelblick visual-studio-code vlc              \
+    adobe-creative-cloud anytype beekeeper-studio bitwarden brooklyn         \
+    cleanmymac cron descript discord docker dotnet-sdk dropbox element       \
+    font-source-code-pro google-chrome insomnia keybase ledger-live ngrok    \
+    notion notion-calendar plex postman pycharm-ce raycast signal sketch     \
+    slack spacedrive spotify tor-browser transmission tunnelblick            \
+    visual-studio-code vlc warp zoom                                         \
     ;
 ```
 
 ```bash
 # link defaults
-~ $ brew link --force --overwrite python@3.11
-~ $ brew link --force --overwrite node@18
+~ $ brew link --force --overwrite python@3.12
+~ $ brew link --force --overwrite node@21
 ~ $ CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib ;       \
         $(brew --prefix)/bin/python3 -m pip install --upgrade                \
             setuptools wheel pip
@@ -260,7 +274,8 @@ p/IG+6hx7jkFb67OTxpuOoDvCIIeAxxb3/MoLz//xe6fgdfI8VGzI2AF
 ~ $ CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib ;       \
     brew uninstall --ignore-dependencies c-ares ;                            \
     for package in                                                           \
-        black flake8 isort jinja2-cli mypy mypy-protobuf py-spy pytest ruff  \
+        black fabric flake8 isort jinja2-cli mypy mypy-protobuf py-spy       \
+        pytest ruff                                                          \
         tomodachi[aiodns,brotli,protobuf,uvloop,opentelemetry] twine         \
     ; do                                                                     \
         package_basic=$(sed 's/^\([^ []*\)\[[^]]*\]/\1/' <<< $package) ;     \
@@ -308,22 +323,28 @@ sudo ln -s ~/.pyenv/versions/2.7.18/bin/python2 $(brew --prefix)/bin/python2
 # install vscode extensions (from 'code --list-extensions')
 # :: code --list-extensions | fmt -w68 | xargs -I{} printf "%8s%-69s\\\\\n" '' '{}'
 ~ $ for extension in \
-        alefragnani.Bookmarks almenon.arepl apollographql.vscode-apollo      \
-        batisteo.vscode-django be5invis.vscode-custom-css                    \
-        bierner.markdown-preview-github-styles chrmarti.regex                \
-        cssho.vscode-svgviewer DavidAnson.vscode-markdownlint                \
+        alefragnani.bookmarks almenon.arepl apollographql.vscode-apollo      \
+        astro-build.astro-vscode batisteo.vscode-django                      \
+        be5invis.vscode-custom-css bierner.markdown-preview-github-styles    \
+        bmewburn.vscode-intelephense-client charliermarsh.ruff               \
+        chrmarti.regex cssho.vscode-svgviewer davidanson.vscode-markdownlint \
         dbaeumer.vscode-eslint donjayamanne.python-environment-manager       \
         donjayamanne.python-extension-pack dsebastien.vscode-python-pack     \
-        eamodio.gitlens Equinusocio.vsc-community-material-theme             \
-        Equinusocio.vsc-material-theme equinusocio.vsc-material-theme-icons  \
-        file-icons.file-icons flowtype.flow-for-vscode GitHub.codespaces     \
-        GitHub.copilot GitHub.copilot-chat GitHub.github-vscode-theme        \
-        GraphQL.vscode-graphql-execution GraphQL.vscode-graphql-syntax       \
-        hbenl.vscode-test-explorer jbw91.theme-material-dark-soda            \
-        JuanBlanco.solidity KevinRose.vsc-python-indent                      \
-        littlefoxteam.vscode-python-test-adapter magicstack.MagicPython      \
-        mgesbert.python-path ms-azuretools.vscode-docker                     \
-        ms-python.black-formatter ms-python.flake8 ms-python.isort           \
+        eamodio.gitlens equinusocio.vsc-community-material-theme             \
+        equinusocio.vsc-material-theme equinusocio.vsc-material-theme-icons  \
+        esbenp.prettier-vscode figma.figma-vscode-extension                  \
+        file-icons.file-icons flowtype.flow-for-vscode github.codespaces     \
+        github.copilot github.copilot-chat github.github-vscode-theme        \
+        graphql.vscode-graphql graphql.vscode-graphql-execution              \
+        graphql.vscode-graphql-syntax hbenl.vscode-test-explorer             \
+        jbw91.theme-material-dark-soda juanblanco.solidity                   \
+        kdcro101.favorites kevinrose.vsc-python-indent                       \
+        lextudio.restructuredtext littlefoxteam.vscode-python-test-adapter   \
+        magicstack.magicpython mgesbert.python-path                          \
+        ms-azuretools.vscode-docker ms-dotnettools.csdevkit                  \
+        ms-dotnettools.csharp ms-dotnettools.vscode-dotnet-runtime           \
+        ms-dotnettools.vscodeintellicode-csharp ms-python.black-formatter    \
+        ms-python.debugpy ms-python.flake8 ms-python.isort                   \
         ms-python.mypy-type-checker ms-python.python                         \
         ms-python.vscode-pylance ms-toolsai.jupyter                          \
         ms-toolsai.jupyter-keymap ms-toolsai.jupyter-renderers               \
@@ -331,12 +352,13 @@ sudo ln -s ~/.pyenv/versions/2.7.18/bin/python2 $(brew --prefix)/bin/python2
         ms-toolsai.vscode-jupyter-slideshow                                  \
         ms-vscode-remote.remote-containers ms-vscode.makefile-tools          \
         ms-vscode.test-adapter-converter njpwerner.autodocstring             \
-        PKief.material-icon-theme rhaiscript.vscode-rhai                     \
-        rioj7.command-variable rust-lang.rust-analyzer ryuta46.multi-command \
+        oven.bun-vscode pkief.material-icon-theme postman.postman-for-vscode \
+        rhaiscript.vscode-rhai rioj7.command-variable                        \
+        rust-lang.rust-analyzer ryuta46.multi-command                        \
         trond-snekvik.simple-rst vangware.dark-plus-material                 \
-        VisualStudioExptTeam.intellicode-api-usage-examples                  \
-        VisualStudioExptTeam.vscodeintellicode                               \
-        vscode-icons-team.vscode-icons Vue.volar wholroyd.jinja              \
+        visualstudioexptteam.intellicode-api-usage-examples                  \
+        visualstudioexptteam.vscodeintellicode                               \
+        vscode-icons-team.vscode-icons vue.volar wholroyd.jinja              \
         zxh404.vscode-proto3                                                 \
     ; do code --install-extension $extension; done
 ```
